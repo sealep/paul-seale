@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import WatchSource from '@/components/WatchSource.vue'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div>
-    <WatchSource />
-  </div>
+  <RouterView />
 </template>
 
-<style scoped></style>
+<style>
+body {
+  background-color: #a4e6e2;
+  margin: 0;
+}
+</style>
