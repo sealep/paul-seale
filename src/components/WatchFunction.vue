@@ -1,35 +1,28 @@
 <script setup lang="ts">
-import useSource, {
+import useDeep, { type DeepValue } from '@/composables/useDeep'
+import useWatchSource, {
   SourceType,
   type WatchSource,
-} from '@/composables/useSource'
+} from '@/composables/useWatchSource'
 import {
+  computed,
   ref,
+  unref,
   watch,
   watchEffect,
   type WatchHandle,
   type WatchOptions,
 } from 'vue'
 
-const {
-  source,
-  sourceExpOptions,
-  sourceExpOptionsIndex,
-  sourceEffectOptions,
-  sourceEffectOptionsIndex,
-} = useSource(SourceType.REF)
+interface WatchFunctionI {
+  sourceType: SourceType
+}
 
-const deepOptions: { name: string; value: number | boolean | undefined }[] = [
-  { name: 'default', value: undefined },
-  { name: 'false', value: false },
-  { name: 'true', value: true },
-  { name: '0', value: 0 },
-  { name: '1', value: 1 },
-  { name: '2', value: 2 },
-  { name: '3', value: 3 },
-  { name: '4', value: 4 },
-]
-const deepOptionsIndex = ref(0)
+const { sourceType } = defineProps<WatchFunctionI>()
+
+const ws = computed(() => useWatchSource(sourceType))
+
+const { deepOptions, deepOptionsIndex } = useDeep()
 
 const functionDisplay = ref('')
 watchEffect(() => {
@@ -37,10 +30,11 @@ watchEffect(() => {
     deepOptions[deepOptionsIndex.value].name === 'default'
       ? '{ }'
       : `{ deep: ${deepOptions[deepOptionsIndex.value].name} }`
-  const effect = sourceEffectOptions[sourceEffectOptionsIndex.value].name
+  const effect =
+    ws.value.sourceEffectOptions[ws.value.sourceEffectOptionsIndex.value].name
   functionDisplay.value = `
     watch(
-        ${sourceExpOptions[sourceExpOptionsIndex.value].name},
+        ${ws.value.sourceExpOptions[ws.value.sourceExpOptionsIndex.value].name},
         ( ) => { console.log('${effect} triggered watcher') },
         ${deep}
     )
@@ -49,15 +43,14 @@ watchEffect(() => {
 
 const effectDisplay = ref('')
 watchEffect(() => {
-  effectDisplay.value = sourceEffectOptions[sourceEffectOptionsIndex.value].name
+  effectDisplay.value =
+    ws.value.sourceEffectOptions[ws.value.sourceEffectOptionsIndex.value].name
 })
 
-function createWatcher(exp: WatchSource, deep?: number | boolean): WatchHandle {
+function createWatcher(exp: WatchSource, deep: DeepValue): WatchHandle {
   const options: WatchOptions = deep ? { deep } : {}
-  const effect = sourceEffectOptions[sourceEffectOptionsIndex.value].name
-  // options.onTrigger = () => {
-  //   console.log(`${effect} triggered watcher`)
-  // }
+  const effect =
+    ws.value.sourceEffectOptions[ws.value.sourceEffectOptionsIndex.value].name
   return watch(
     exp,
     () => {
@@ -74,7 +67,7 @@ function setUpWatcher() {
     watcher.stop()
   }
   watcher = createWatcher(
-    sourceExpOptions[sourceExpOptionsIndex.value].exp,
+    ws.value.sourceExpOptions[ws.value.sourceExpOptionsIndex.value].exp,
     deepOptions[deepOptionsIndex.value].value,
   )
 }
@@ -83,27 +76,28 @@ watchEffect(() => {
 })
 
 function runEffect() {
-  sourceEffectOptions[sourceEffectOptionsIndex.value].effect()
+  ws.value.sourceEffectOptions[ws.value.sourceEffectOptionsIndex.value].effect()
 }
 </script>
 
 <template>
-  <div class="display">
-    {{ JSON.stringify(source, null, 2) }}
-  </div>
+  <div class="display">{{ JSON.stringify(unref(ws.source), null, 2) }}</div>
   <div>
-    <select id="selectRoExp" v-model.number="sourceExpOptionsIndex">
+    <select id="selectRoExp" v-model.number="ws.sourceExpOptionsIndex.value">
       <option
-        v-for="(roExpOption, index) in sourceExpOptions"
+        v-for="(roExpOption, index) in ws.sourceExpOptions"
         :key="index"
         :value="index"
       >
         {{ roExpOption.name }}
       </option>
     </select>
-    <select id="selectRoEffect" v-model.number="sourceEffectOptionsIndex">
+    <select
+      id="selectRoEffect"
+      v-model.number="ws.sourceEffectOptionsIndex.value"
+    >
       <option
-        v-for="(roEffectOption, index) in sourceEffectOptions"
+        v-for="(roEffectOption, index) in ws.sourceEffectOptions"
         :key="index"
         :value="index"
       >

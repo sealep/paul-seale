@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
+import { RouterLink, type RouteParamsGeneric } from 'vue-router'
 
 export interface NavButtonI {
   buttonName: string
   linkName: string
+  params: RouteParamsGeneric
 }
 
-const { buttonName, linkName } = defineProps<NavButtonI>()
+const { buttonName, linkName, params } = defineProps<NavButtonI>()
 </script>
 
 <template>
-  <RouterLink :to="{ name: linkName }">
+  <RouterLink :to="{ name: linkName, params }">
     <button>{{ buttonName }}</button>
   </RouterLink>
 </template>

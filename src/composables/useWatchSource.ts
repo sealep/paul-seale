@@ -10,7 +10,7 @@ import {
   type ShallowRef,
 } from 'vue'
 
-export enum SourceType {
+enum SourceType {
   REF,
   SHALLOW_REF,
   REACTIVE,
@@ -25,20 +25,21 @@ type RawSource = {
   }
 }
 
-export type Source =
+type Source =
   | Ref<RawSource>
   | ShallowRef<RawSource>
   | Reactive<RawSource>
   | ShallowReactive<RawSource>
 
 /* The native WatchSource doesn't allow Reactive objects */
-export type WatchSource = Source | (() => Source | number)
+type WatchSource = Source | (() => Source | number)
 
-export type ExpOption = {
+type ExpOption = {
   name: string
   exp: WatchSource
 }
-export type EffectOption = { name: string; effect: () => void }
+
+type EffectOption = { name: string; effect: () => void }
 
 function getSource(sourceType: SourceType): Source {
   const o: RawSource = {
@@ -159,7 +160,7 @@ function getSourceEffectOptions(source: Source, sourceType: SourceType) {
   }
 }
 
-export default function useSource(sourceType: SourceType) {
+export default function useWatchSource(sourceType: SourceType) {
   const source = getSource(sourceType)
   const sourceExpOptions = getSourceExpOptions(source, sourceType)
   const sourceExpOptionsIndex = ref(0)
@@ -173,4 +174,12 @@ export default function useSource(sourceType: SourceType) {
     sourceEffectOptions,
     sourceEffectOptionsIndex,
   }
+}
+
+export {
+  SourceType,
+  type Source,
+  type WatchSource,
+  type ExpOption,
+  type EffectOption,
 }
