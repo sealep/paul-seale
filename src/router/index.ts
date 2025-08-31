@@ -1,4 +1,5 @@
 import HomePage from '@/components/HomePage.vue'
+import ResumePage from '@/components/ResumePage.vue'
 import WatchFunction from '@/components/WatchFunction.vue'
 import WatchPage from '@/components/WatchPage.vue'
 import {
@@ -12,6 +13,11 @@ const routes = [
     path: '/',
     name: 'HomePage',
     component: HomePage,
+  },
+  {
+    path: '/resume',
+    name: 'ResumePage',
+    component: ResumePage,
   },
   {
     path: '/watch',

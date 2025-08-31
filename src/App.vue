@@ -9,6 +9,10 @@ const navButtons: NavButtonI[] = [
     linkName: 'HomePage',
   },
   {
+    buttonName: 'Resume',
+    linkName: 'ResumePage',
+  },
+  {
     buttonName: 'Watch',
     linkName: 'WatchPage',
   },
