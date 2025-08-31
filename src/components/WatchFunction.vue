@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ActionButton from '@/ActionButton.vue'
 import useDeep, { type DeepValue } from '@/composables/useDeep'
 import useWatchSource, {
   SourceType,
@@ -81,51 +82,83 @@ function runEffect() {
 </script>
 
 <template>
-  <div class="display">{{ JSON.stringify(unref(ws.source), null, 2) }}</div>
-  <div>
-    <select id="selectRoExp" v-model.number="ws.sourceExpOptionsIndex.value">
-      <option
-        v-for="(roExpOption, index) in ws.sourceExpOptions"
-        :key="index"
-        :value="index"
-      >
-        {{ roExpOption.name }}
-      </option>
-    </select>
-    <select
-      id="selectRoEffect"
-      v-model.number="ws.sourceEffectOptionsIndex.value"
-    >
-      <option
-        v-for="(roEffectOption, index) in ws.sourceEffectOptions"
-        :key="index"
-        :value="index"
-      >
-        {{ roEffectOption.name }}
-      </option>
-    </select>
-    <select id="selectDeep" v-model.number="deepOptionsIndex">
-      <option
-        v-for="(deepOption, index) in deepOptions"
-        :key="index"
-        :value="index"
-      >
-        {{ deepOption.name }}
-      </option>
-    </select>
+  <div class="code">
+    {{
+      `const ${ws.sourceName} = ${ws.sourceFunction}(` +
+      JSON.stringify(unref(ws.source), null, 2).replace(/\"/g, '') +
+      ')'
+    }}
   </div>
-  <div class="display">
+  <div>
+    <div class="params">
+      <label for="selectSourceExp">Select watch source:</label>
+      <select
+        id="selectSourceExp"
+        v-model.number="ws.sourceExpOptionsIndex.value"
+      >
+        <option
+          v-for="(roExpOption, index) in ws.sourceExpOptions"
+          :key="index"
+          :value="index"
+        >
+          {{ roExpOption.name }}
+        </option>
+      </select>
+      <label for="selectDeep">Select deep option:</label>
+      <select id="selectDeep" v-model.number="deepOptionsIndex">
+        <option
+          v-for="(deepOption, index) in deepOptions"
+          :key="index"
+          :value="index"
+        >
+          {{ deepOption.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="code">
     {{ functionDisplay }}
   </div>
-  <div class="display">
-    {{ effectDisplay }}
-  </div>
-  <button @click="runEffect">Run Effect</button>
+  <select
+    id="selectRoEffect"
+    v-model.number="ws.sourceEffectOptionsIndex.value"
+  >
+    <option
+      v-for="(roEffectOption, index) in ws.sourceEffectOptions"
+      :key="index"
+      :value="index"
+    >
+      {{ roEffectOption.name }}
+    </option>
+  </select>
+  <ActionButton :buttonName="'Run Effect'" :action="runEffect" />
+  <!-- <button @click="runEffect">Run Effect</button> -->
 </template>
 
 <style scoped>
-.display {
+.code {
   white-space: pre;
   font-family: 'Courier New', Courier, monospace;
+  background-color: rgb(201, 229, 229);
+  padding: 1.5rem;
+  border: solid #888888;
+  border-radius: 2%;
+}
+.params {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+label {
+  font-weight: 600;
+}
+select {
+  width: 12rem;
+  height: 2rem;
+  font-family: 'Courier New', Courier, monospace;
+  border: solid #888888;
+  border-radius: 2%;
+  padding: 0.2rem;
+  font-size: 1rem;
 }
 </style>

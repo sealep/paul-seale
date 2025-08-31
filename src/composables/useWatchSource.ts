@@ -41,7 +41,7 @@ type ExpOption = {
 
 type EffectOption = { name: string; effect: () => void }
 
-function getSource(sourceType: SourceType): Source {
+function newRawObj() {
   const o: RawSource = {
     n: 0,
     o2: {
@@ -49,15 +49,19 @@ function getSource(sourceType: SourceType): Source {
       a: [0, { n3: 0 }],
     },
   }
+  return o
+}
+
+function getSource(sourceType: SourceType): Source {
   switch (sourceType) {
     case SourceType.REF:
-      return ref(o)
+      return ref(newRawObj())
     case SourceType.SHALLOW_REF:
-      return shallowRef(o)
+      return shallowRef(newRawObj())
     case SourceType.REACTIVE:
-      return reactive(o)
+      return reactive(newRawObj())
     case SourceType.SHALLOW_REACTIVE:
-      return shallowReactive(o)
+      return shallowReactive(newRawObj())
   }
 }
 
@@ -71,6 +75,19 @@ function getSourceName(sourceType: SourceType) {
       return 'ro'
     case SourceType.SHALLOW_REACTIVE:
       return 'sro'
+  }
+}
+
+function getSourceFunction(sourceType: SourceType) {
+  switch (sourceType) {
+    case SourceType.REF:
+      return 'ref'
+    case SourceType.SHALLOW_REF:
+      return 'shallowRef'
+    case SourceType.REACTIVE:
+      return 'reactive'
+    case SourceType.SHALLOW_REACTIVE:
+      return 'shallowReactive'
   }
 }
 
@@ -131,6 +148,10 @@ function getRefEffectOptions(
   )
   return [
     {
+      name: `${sourceName}.value = { /* fresh object */ }`,
+      effect: () => (source.value = newRawObj()),
+    },
+    {
       name: `${sourceName}.value.n++`,
       effect: () => source.value.n++,
     },
@@ -162,6 +183,8 @@ function getSourceEffectOptions(source: Source, sourceType: SourceType) {
 
 export default function useWatchSource(sourceType: SourceType) {
   const source = getSource(sourceType)
+  const sourceName = getSourceName(sourceType)
+  const sourceFunction = getSourceFunction(sourceType)
   const sourceExpOptions = getSourceExpOptions(source, sourceType)
   const sourceExpOptionsIndex = ref(0)
 
@@ -169,6 +192,8 @@ export default function useWatchSource(sourceType: SourceType) {
   const sourceEffectOptionsIndex = ref(0)
   return {
     source,
+    sourceName,
+    sourceFunction,
     sourceExpOptions,
     sourceExpOptionsIndex,
     sourceEffectOptions,
