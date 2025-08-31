@@ -187,7 +187,7 @@ function getRefEffectOptions(
   )
   return [
     {
-      name: `${sourceName}.value = { /* fresh object */ }`,
+      name: `${sourceName}.value = { /* clone */ }`,
       effect: () => (source.value = newRawObj()),
     },
     {

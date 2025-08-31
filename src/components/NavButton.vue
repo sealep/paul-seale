@@ -32,7 +32,7 @@ button {
 button:hover {
   transform: scale(1.1);
 }
-a.router-link-exact-active {
+a.router-link-active {
   background-color: green;
   box-shadow: 0 0 0rem 0.5rem rgba(153, 223, 88, 1);
   border-top: 1rem solid green;

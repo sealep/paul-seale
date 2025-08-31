@@ -20,9 +20,15 @@ const { navButtons } = defineProps<NavBarI>()
 <style scoped>
 .nav-bar {
   width: 100%;
+  height: 6rem;
+  margin-bottom: 2rem;
   position: sticky;
   top: 0;
-  background: linear-gradient(-90deg, rgb(228, 156, 22), rgb(159, 161, 18));
+  background-color: rgb(22, 80, 80);
   box-shadow: 0 25px 15px 0 rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
 }
 </style>
