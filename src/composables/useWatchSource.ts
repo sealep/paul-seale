@@ -31,7 +31,7 @@ type Source =
   | Reactive<RawSource>
   | ShallowReactive<RawSource>
 
-/* The native WatchSource doesn't allow Reactive objects */
+/* The native Vue WatchSource doesn't allow Reactive objects */
 type WatchSource = object | (() => object | number)
 
 type ExpOption = {
@@ -101,10 +101,8 @@ function isShallow(sourceType: SourceType) {
 function getRefExpOptions(
   source: Ref<RawSource> | ShallowRef<RawSource>,
   isShallow: boolean,
+  sourceName: string,
 ): ExpOption[] {
-  const sourceName = getSourceName(
-    isShallow ? SourceType.SHALLOW_REF : SourceType.REF,
-  )
   return [
     { name: sourceName, exp: source },
     { name: `${sourceName}.value`, exp: source.value },
@@ -138,14 +136,12 @@ function getRefExpOptions(
 function getReactiveExpOptions(
   source: Reactive<RawSource> | ShallowReactive<RawSource>,
   isShallow: boolean,
+  sourceName: string,
 ): ExpOption[] {
-  const sourceName = getSourceName(
-    isShallow ? SourceType.SHALLOW_REACTIVE : SourceType.REACTIVE,
-  )
   return [
     { name: sourceName, exp: source },
     { name: `${sourceName}.o2`, exp: source.o2 },
-    { name: `${sourceName}o2.a`, exp: source.o2.a },
+    { name: `${sourceName}.o2.a`, exp: source.o2.a },
     {
       name: `${sourceName}.o2.a[1]`,
       exp: source.o2.a[1],
@@ -170,21 +166,23 @@ function getReactiveExpOptions(
   ]
 }
 
-function getSourceExpOptions(source: Source, sourceType: SourceType) {
+function getSourceExpOptions(
+  source: Source,
+  sourceType: SourceType,
+  sourceName: string,
+) {
   if (isRef(source)) {
-    return getRefExpOptions(source, isShallow(sourceType))
+    return getRefExpOptions(source, isShallow(sourceType), sourceName)
   } else {
-    return getReactiveExpOptions(source, isShallow(sourceType))
+    return getReactiveExpOptions(source, isShallow(sourceType), sourceName)
   }
 }
 
 function getRefEffectOptions(
   source: Ref<RawSource> | ShallowRef<RawSource>,
   isShallow: boolean,
+  sourceName: string,
 ): EffectOption[] {
-  const sourceName = getSourceName(
-    isShallow ? SourceType.SHALLOW_REF : SourceType.REF,
-  )
   return [
     {
       name: `${sourceName}.value = { /* clone */ }`,
@@ -212,10 +210,8 @@ function getRefEffectOptions(
 function getReactiveEffectOptions(
   source: Reactive<RawSource> | ShallowReactive<RawSource>,
   isShallow: boolean,
+  sourceName: string,
 ): EffectOption[] {
-  const sourceName = getSourceName(
-    isShallow ? SourceType.SHALLOW_REACTIVE : SourceType.REACTIVE,
-  )
   return [
     {
       name: `${sourceName}.n++`,
@@ -236,11 +232,15 @@ function getReactiveEffectOptions(
   ]
 }
 
-function getSourceEffectOptions(source: Source, sourceType: SourceType) {
+function getSourceEffectOptions(
+  source: Source,
+  sourceType: SourceType,
+  sourceName: string,
+) {
   if (isRef(source)) {
-    return getRefEffectOptions(source, isShallow(sourceType))
+    return getRefEffectOptions(source, isShallow(sourceType), sourceName)
   } else {
-    return getReactiveEffectOptions(source, isShallow(sourceType))
+    return getReactiveEffectOptions(source, isShallow(sourceType), sourceName)
   }
 }
 
@@ -248,9 +248,13 @@ export default function useWatchSource(sourceType: SourceType) {
   const source = getSource(sourceType)
   const sourceName = getSourceName(sourceType)
   const sourceFunction = getSourceFunction(sourceType)
-  const sourceExpOptions = getSourceExpOptions(source, sourceType)
+  const sourceExpOptions = getSourceExpOptions(source, sourceType, sourceName)
 
-  const sourceEffectOptions = getSourceEffectOptions(source, sourceType)
+  const sourceEffectOptions = getSourceEffectOptions(
+    source,
+    sourceType,
+    sourceName,
+  )
   return {
     source,
     sourceName,

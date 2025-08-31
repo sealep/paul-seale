@@ -151,6 +151,7 @@ function runEffect() {
 .code {
   white-space: pre;
   font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
   background-color: rgb(201, 229, 229);
   padding: 1.5rem;
   border: solid #888888;
@@ -162,12 +163,14 @@ function runEffect() {
   align-items: center;
 }
 label {
-  font-weight: 600;
+  font-weight: bold;
 }
 select {
   width: 17rem;
   height: 2rem;
   font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  color: black;
   border: solid #888888;
   border-radius: 2%;
   padding: 0.2rem;

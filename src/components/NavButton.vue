@@ -24,7 +24,7 @@ button {
   height: 3rem;
   font-size: 1rem;
   background-color: rgb(34, 88, 168);
-  color: #fefefe;
+  color: white;
   border-radius: 5%;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
   margin: 2px;

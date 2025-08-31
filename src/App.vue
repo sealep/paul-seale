@@ -31,10 +31,6 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
+  color: black;
 }
-/* .active {
-  border: 2px solid black;
-  width: 100%;
-  height: 100%;
-} */
 </style>
