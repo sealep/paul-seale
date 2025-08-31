@@ -32,7 +32,7 @@ type Source =
   | ShallowReactive<RawSource>
 
 /* The native WatchSource doesn't allow Reactive objects */
-type WatchSource = Source | (() => Source | number)
+type WatchSource = object | (() => object | number)
 
 type ExpOption = {
   name: string
@@ -107,9 +107,31 @@ function getRefExpOptions(
   )
   return [
     { name: sourceName, exp: source },
+    { name: `${sourceName}.value`, exp: source.value },
+    { name: `${sourceName}.value.o2`, exp: source.value.o2 },
+    { name: `${sourceName}.value.o2.a`, exp: source.value.o2.a },
+    {
+      name: `${sourceName}.value.o2.a[1]`,
+      exp: source.value.o2.a[1],
+    },
     { name: `( ) => ${sourceName}`, exp: () => source },
     { name: `( ) => ${sourceName}.value`, exp: () => source.value },
     { name: `( ) => ${sourceName}.value.n`, exp: () => source.value.n },
+    { name: `( ) => ${sourceName}.value.o2`, exp: () => source.value.o2 },
+    { name: `( ) => ${sourceName}.value.o2.n2`, exp: () => source.value.o2.n2 },
+    { name: `( ) => ${sourceName}.value.o2.a`, exp: () => source.value.o2.a },
+    {
+      name: `( ) => ${sourceName}.value.o2.a[0]`,
+      exp: () => source.value.o2.a[0],
+    },
+    {
+      name: `( ) => ${sourceName}.value.o2.a[1]`,
+      exp: () => source.value.o2.a[1],
+    },
+    {
+      name: `( ) => ${sourceName}.value.o2.a[1].n3`,
+      exp: () => source.value.o2.a[1].n3,
+    },
   ]
 }
 
@@ -121,13 +143,30 @@ function getReactiveExpOptions(
     isShallow ? SourceType.SHALLOW_REACTIVE : SourceType.REACTIVE,
   )
   return [
+    { name: sourceName, exp: source },
+    { name: `${sourceName}.o2`, exp: source.o2 },
+    { name: `${sourceName}o2.a`, exp: source.o2.a },
     {
-      name: sourceName,
-      exp: source,
+      name: `${sourceName}.o2.a[1]`,
+      exp: source.o2.a[1],
     },
     { name: `( ) => ${sourceName}`, exp: () => source },
     { name: `( ) => ${sourceName}.n`, exp: () => source.n },
+    { name: `( ) => ${sourceName}.o2`, exp: () => source.o2 },
     { name: `( ) => ${sourceName}.o2.n2`, exp: () => source.o2.n2 },
+    { name: `( ) => ${sourceName}.o2.a`, exp: () => source.o2.a },
+    {
+      name: `( ) => ${sourceName}.o2.a[0]`,
+      exp: () => source.o2.a[0],
+    },
+    {
+      name: `( ) => ${sourceName}.o2.a[1]`,
+      exp: () => source.o2.a[1],
+    },
+    {
+      name: `( ) => ${sourceName}.o2.a[1].n3`,
+      exp: () => source.o2.a[1].n3,
+    },
   ]
 }
 
@@ -155,6 +194,18 @@ function getRefEffectOptions(
       name: `${sourceName}.value.n++`,
       effect: () => source.value.n++,
     },
+    {
+      name: `${sourceName}.value.o2.n2++`,
+      effect: () => source.value.o2.n2++,
+    },
+    {
+      name: `${sourceName}.value.o2.a[0]++`,
+      effect: () => source.value.o2.a[0]++,
+    },
+    {
+      name: `${sourceName}.value.o2.a[1].n3++`,
+      effect: () => source.value.o2.a[1].n3++,
+    },
   ]
 }
 
@@ -169,6 +220,18 @@ function getReactiveEffectOptions(
     {
       name: `${sourceName}.n++`,
       effect: () => source.n++,
+    },
+    {
+      name: `${sourceName}.o2.n2++`,
+      effect: () => source.o2.n2++,
+    },
+    {
+      name: `${sourceName}.o2.a[0]++`,
+      effect: () => source.o2.a[0]++,
+    },
+    {
+      name: `${sourceName}.o2.a[1].n3++`,
+      effect: () => source.o2.a[1].n3++,
     },
   ]
 }
@@ -186,18 +249,14 @@ export default function useWatchSource(sourceType: SourceType) {
   const sourceName = getSourceName(sourceType)
   const sourceFunction = getSourceFunction(sourceType)
   const sourceExpOptions = getSourceExpOptions(source, sourceType)
-  const sourceExpOptionsIndex = ref(0)
 
   const sourceEffectOptions = getSourceEffectOptions(source, sourceType)
-  const sourceEffectOptionsIndex = ref(0)
   return {
     source,
     sourceName,
     sourceFunction,
     sourceExpOptions,
-    sourceExpOptionsIndex,
     sourceEffectOptions,
-    sourceEffectOptionsIndex,
   }
 }
 

@@ -15,8 +15,7 @@ const deepOptions: DeepOption[] = [
 ]
 
 export default function useDeep() {
-  const deepOptionsIndex = ref(0)
-  return { deepOptions, deepOptionsIndex }
+  return { deepOptions }
 }
 
 export { type DeepValue, type DeepOption }

@@ -23,7 +23,11 @@ const { sourceType } = defineProps<WatchFunctionI>()
 
 const ws = computed(() => useWatchSource(sourceType))
 
-const { deepOptions, deepOptionsIndex } = useDeep()
+const sourceExpOptionsIndex = ref(0)
+const sourceEffectOptionsIndex = ref(0)
+
+const { deepOptions } = useDeep()
+const deepOptionsIndex = ref(0)
 
 const functionDisplay = ref('')
 watchEffect(() => {
@@ -32,11 +36,11 @@ watchEffect(() => {
       ? '{ }'
       : `{ deep: ${deepOptions[deepOptionsIndex.value].name} }`
   const effect =
-    ws.value.sourceEffectOptions[ws.value.sourceEffectOptionsIndex.value].name
+    ws.value.sourceEffectOptions[sourceEffectOptionsIndex.value].name
   functionDisplay.value = `
     watch(
-        ${ws.value.sourceExpOptions[ws.value.sourceExpOptionsIndex.value].name},
-        ( ) => { console.log('${effect} triggered watcher') },
+        ${ws.value.sourceExpOptions[sourceExpOptionsIndex.value].name},
+        ( ) => { flash('${effect} triggered watcher!') },
         ${deep}
     )
   `
@@ -45,17 +49,22 @@ watchEffect(() => {
 const effectDisplay = ref('')
 watchEffect(() => {
   effectDisplay.value =
-    ws.value.sourceEffectOptions[ws.value.sourceEffectOptionsIndex.value].name
+    ws.value.sourceEffectOptions[sourceEffectOptionsIndex.value].name
 })
+
+const triggerMessage = ref('')
 
 function createWatcher(exp: WatchSource, deep: DeepValue): WatchHandle {
   const options: WatchOptions = deep ? { deep } : {}
   const effect =
-    ws.value.sourceEffectOptions[ws.value.sourceEffectOptionsIndex.value].name
+    ws.value.sourceEffectOptions[sourceEffectOptionsIndex.value].name
   return watch(
     exp,
     () => {
-      console.log(`${effect} triggered watcher`)
+      triggerMessage.value = `${effect} triggered watcher!`
+      setTimeout(() => {
+        triggerMessage.value = ''
+      }, 3000)
     },
     options,
   )
@@ -68,7 +77,7 @@ function setUpWatcher() {
     watcher.stop()
   }
   watcher = createWatcher(
-    ws.value.sourceExpOptions[ws.value.sourceExpOptionsIndex.value].exp,
+    ws.value.sourceExpOptions[sourceExpOptionsIndex.value].exp,
     deepOptions[deepOptionsIndex.value].value,
   )
 }
@@ -77,7 +86,7 @@ watchEffect(() => {
 })
 
 function runEffect() {
-  ws.value.sourceEffectOptions[ws.value.sourceEffectOptionsIndex.value].effect()
+  ws.value.sourceEffectOptions[sourceEffectOptionsIndex.value].effect()
 }
 </script>
 
@@ -92,10 +101,7 @@ function runEffect() {
   <div>
     <div class="params">
       <label for="selectSourceExp">Select watch source:</label>
-      <select
-        id="selectSourceExp"
-        v-model.number="ws.sourceExpOptionsIndex.value"
-      >
+      <select id="selectSourceExp" v-model.number="sourceExpOptionsIndex">
         <option
           v-for="(roExpOption, index) in ws.sourceExpOptions"
           :key="index"
@@ -119,20 +125,26 @@ function runEffect() {
   <div class="code">
     {{ functionDisplay }}
   </div>
-  <select
-    id="selectRoEffect"
-    v-model.number="ws.sourceEffectOptionsIndex.value"
-  >
-    <option
-      v-for="(roEffectOption, index) in ws.sourceEffectOptions"
-      :key="index"
-      :value="index"
-    >
-      {{ roEffectOption.name }}
-    </option>
-  </select>
-  <ActionButton :buttonName="'Run Effect'" :action="runEffect" />
-  <!-- <button @click="runEffect">Run Effect</button> -->
+  <div class="params">
+    <label for="selectSourceEffect">Select effect to run:</label>
+    <select id="selectSourceEffect" v-model.number="sourceEffectOptionsIndex">
+      <option
+        v-for="(roEffectOption, index) in ws.sourceEffectOptions"
+        :key="index"
+        :value="index"
+      >
+        {{ roEffectOption.name }}
+      </option>
+    </select>
+  </div>
+  <ActionButton
+    :disabled="!!triggerMessage"
+    :buttonName="'Run Effect'"
+    :action="runEffect"
+  />
+  <p class="trigger-message" v-show="triggerMessage">
+    {{ triggerMessage }}
+  </p>
 </template>
 
 <style scoped>
@@ -153,12 +165,27 @@ label {
   font-weight: 600;
 }
 select {
-  width: 12rem;
+  width: 17rem;
   height: 2rem;
   font-family: 'Courier New', Courier, monospace;
   border: solid #888888;
   border-radius: 2%;
   padding: 0.2rem;
   font-size: 1rem;
+}
+@keyframes yellowfade {
+  from {
+    background-color: rgba(153, 223, 88, 1);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+.trigger-message {
+  padding: 2rem;
+  border-radius: 50%;
+  animation-name: yellowfade;
+  animation-duration: 3s;
+  font-weight: bold;
 }
 </style>

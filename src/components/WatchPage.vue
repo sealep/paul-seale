@@ -32,7 +32,7 @@ const navButtons: NavButtonI[] = [
 <template>
   <div class="page">
     <div class="chooser">
-      <span>Choose a watcher type:</span>
+      <span>Choose a source type:</span>
       <ul>
         <li v-for="(navButton, index) in navButtons" :key="index">
           <NavButton v-bind="navButton" />

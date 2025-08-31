@@ -21,4 +21,11 @@ button {
   border-radius: 5%;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
 }
+button:disabled {
+  background-color: #f2f2f2;
+  color: #999999;
+}
+button:hover {
+  transform: scale(1.1);
+}
 </style>
