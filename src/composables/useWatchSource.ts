@@ -103,15 +103,20 @@ function getRefExpOptions(
   isShallow: boolean,
   sourceName: string,
 ): ExpOption[] {
+  const notForShallow = isShallow
+    ? []
+    : [
+        { name: `${sourceName}.value`, exp: source.value },
+        { name: `${sourceName}.value.o2`, exp: source.value.o2 },
+        { name: `${sourceName}.value.o2.a`, exp: source.value.o2.a },
+        {
+          name: `${sourceName}.value.o2.a[1]`,
+          exp: source.value.o2.a[1],
+        },
+      ]
   return [
     { name: sourceName, exp: source },
-    { name: `${sourceName}.value`, exp: source.value },
-    { name: `${sourceName}.value.o2`, exp: source.value.o2 },
-    { name: `${sourceName}.value.o2.a`, exp: source.value.o2.a },
-    {
-      name: `${sourceName}.value.o2.a[1]`,
-      exp: source.value.o2.a[1],
-    },
+    ...notForShallow,
     { name: `( ) => ${sourceName}`, exp: () => source },
     { name: `( ) => ${sourceName}.value`, exp: () => source.value },
     { name: `( ) => ${sourceName}.value.n`, exp: () => source.value.n },
@@ -138,14 +143,19 @@ function getReactiveExpOptions(
   isShallow: boolean,
   sourceName: string,
 ): ExpOption[] {
+  const notForShallow = isShallow
+    ? []
+    : [
+        { name: `${sourceName}.o2`, exp: source.o2 },
+        { name: `${sourceName}.o2.a`, exp: source.o2.a },
+        {
+          name: `${sourceName}.o2.a[1]`,
+          exp: source.o2.a[1],
+        },
+      ]
   return [
     { name: sourceName, exp: source },
-    { name: `${sourceName}.o2`, exp: source.o2 },
-    { name: `${sourceName}.o2.a`, exp: source.o2.a },
-    {
-      name: `${sourceName}.o2.a[1]`,
-      exp: source.o2.a[1],
-    },
+    ...notForShallow,
     { name: `( ) => ${sourceName}`, exp: () => source },
     { name: `( ) => ${sourceName}.n`, exp: () => source.n },
     { name: `( ) => ${sourceName}.o2`, exp: () => source.o2 },
