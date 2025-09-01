@@ -1,6 +1,4 @@
-import { ref } from 'vue'
-
-type DeepValue = number | boolean | undefined
+type DeepValue = number | boolean
 type DeepOption = { name: string; value: DeepValue }
 
 const deepOptions: DeepOption[] = [

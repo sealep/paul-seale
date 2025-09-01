@@ -25,12 +25,25 @@ const navButtons: NavButtonI[] = [
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap');
+:root {
+  --light-mint: #bfffed;
+  --vue-ocean-green: #42b883;
+  --vue-pickled-bluewood: #35495e;
+  --white-old-paper: #f6eee3;
+  --gray-border: #888888;
+  --action-button: #9eb6da;
+  --disabled-bg: #f2f2f2;
+  --disabled-text: #999999;
+}
 body {
-  background-color: #a4e6e2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--light-mint);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Arimo', sans-serif;
   color: black;
 }
 </style>

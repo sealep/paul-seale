@@ -5,16 +5,15 @@ import NavButton, { type NavButtonI } from '@/components/NavButton.vue'
 import { SourceType } from '@/composables/useWatchSource'
 const navButtons: NavButtonI[] = [
   {
-    buttonName: 'Ref',
-    linkName: 'WatchFunction',
-    params: { sourceType: `${SourceType.REF}` },
-  },
-  {
     buttonName: 'ShallowRef',
     linkName: 'WatchFunction',
     params: { sourceType: `${SourceType.SHALLOW_REF}` },
   },
-
+  {
+    buttonName: 'Ref',
+    linkName: 'WatchFunction',
+    params: { sourceType: `${SourceType.REF}` },
+  },
   {
     buttonName: 'Reactive',
     linkName: 'WatchFunction',
@@ -39,11 +38,23 @@ const navButtons: NavButtonI[] = [
         </li>
       </ul>
     </div>
+    <p class="description">
+      This demonstrates the usage of the 'watch' function from the Vue
+      Composition API. You can observe the behavior of the function when varying
+      the target object to be watched, and the 'deep' option.
+    </p>
     <RouterView />
   </div>
 </template>
 
 <style scoped>
+.description {
+  position: absolute;
+  left: 7%;
+  top: 23%;
+  font-size: 1.2rem;
+  width: 20%;
+}
 .page {
   display: flex;
   flex-direction: column;
@@ -55,9 +66,9 @@ const navButtons: NavButtonI[] = [
   display: flex;
   align-items: center;
 }
-span {
+.chooser span {
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 ul {
   display: flex;

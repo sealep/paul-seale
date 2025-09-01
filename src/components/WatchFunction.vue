@@ -20,7 +20,6 @@ interface WatchFunctionI {
 }
 
 const { sourceType } = defineProps<WatchFunctionI>()
-
 const ws = computed(() => useWatchSource(sourceType))
 
 const sourceExpOptionsIndex = ref(0)
@@ -55,7 +54,10 @@ watchEffect(() => {
 const triggerMessage = ref('')
 
 function createWatcher(exp: WatchSource, deep: DeepValue): WatchHandle {
-  const options: WatchOptions = deep ? { deep } : {}
+  // 'sync' required as 'r.value =...' will update 'ws' which triggers
+  // 'setUpWatcher' which stops the watcher before it executes the effect
+  // of 'r.value ...'
+  const options: WatchOptions = { deep, flush: 'sync' }
   const effect =
     ws.value.sourceEffectOptions[sourceEffectOptionsIndex.value].name
   return watch(
@@ -103,11 +105,11 @@ function runEffect() {
       <label for="selectSourceExp">Select watch source:</label>
       <select id="selectSourceExp" v-model.number="sourceExpOptionsIndex">
         <option
-          v-for="(roExpOption, index) in ws.sourceExpOptions"
+          v-for="(sourceExpOption, index) in ws.sourceExpOptions"
           :key="index"
           :value="index"
         >
-          {{ roExpOption.name }}
+          {{ sourceExpOption.name }}
         </option>
       </select>
       <label for="selectDeep">Select deep option:</label>
@@ -129,11 +131,11 @@ function runEffect() {
     <label for="selectSourceEffect">Select effect to run:</label>
     <select id="selectSourceEffect" v-model.number="sourceEffectOptionsIndex">
       <option
-        v-for="(roEffectOption, index) in ws.sourceEffectOptions"
+        v-for="(sourceEffectOption, index) in ws.sourceEffectOptions"
         :key="index"
         :value="index"
       >
-        {{ roEffectOption.name }}
+        {{ sourceEffectOption.name }}
       </option>
     </select>
   </div>
@@ -152,10 +154,9 @@ function runEffect() {
   white-space: pre;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
-  background-color: rgb(201, 229, 229);
-  padding: 1.5rem;
-  border: solid #888888;
-  border-radius: 2%;
+  background-color: var(--white-old-paper);
+  padding: 1rem;
+  border: solid 2px var(--gray-border);
 }
 .params {
   display: flex;
@@ -171,22 +172,19 @@ select {
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
   color: black;
-  border: solid #888888;
-  border-radius: 2%;
-  padding: 0.2rem;
+  border: solid 2px var(--gray-border);
   font-size: 1rem;
 }
 @keyframes yellowfade {
   from {
-    background-color: rgba(153, 223, 88, 1);
+    background-color: yellow;
   }
   to {
     background-color: transparent;
   }
 }
 .trigger-message {
-  padding: 2rem;
-  border-radius: 50%;
+  padding: 1rem;
   animation-name: yellowfade;
   animation-duration: 3s;
   font-weight: bold;

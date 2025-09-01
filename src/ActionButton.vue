@@ -16,13 +16,13 @@ button {
   width: 8rem;
   height: 2rem;
   font-size: 1rem;
-  background-color: rgb(158, 182, 218);
+  background-color: var(--action-button);
   border-radius: 5%;
-  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.5);
 }
 button:disabled {
-  background-color: #f2f2f2;
-  color: #999999;
+  background-color: var(--disabled-bg);
+  color: var(--disabled-text);
 }
 button:hover {
   transform: scale(1.1);

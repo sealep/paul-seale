@@ -52,16 +52,21 @@ function newRawObj() {
   return o
 }
 
+const r: Ref<RawSource> = ref(newRawObj())
+const sr: ShallowRef<RawSource> = shallowRef(newRawObj())
+const ro: Reactive<RawSource> = reactive(newRawObj())
+const sro: ShallowReactive<RawSource> = shallowReactive(newRawObj())
+
 function getSource(sourceType: SourceType): Source {
   switch (sourceType) {
     case SourceType.REF:
-      return ref(newRawObj())
+      return r
     case SourceType.SHALLOW_REF:
-      return shallowRef(newRawObj())
+      return sr
     case SourceType.REACTIVE:
-      return reactive(newRawObj())
+      return ro
     case SourceType.SHALLOW_REACTIVE:
-      return shallowReactive(newRawObj())
+      return sro
   }
 }
 
