@@ -123,7 +123,7 @@ function runEffect() {
 
 <template>
   <div class="page">
-    <div class="choose-label">Choose a source type:</div>
+    <div class="choice-label">Choose a source type:</div>
     <div class="choices">
       <ul>
         <li v-for="(navButton, index) in navButtons" :key="index">
@@ -213,9 +213,9 @@ function runEffect() {
 .page {
   padding: 3rem;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 30% 20% 40%;
   grid-template-areas:
-    'choose-label choices choices'
+    'choice-label choices choices'
     'description description object'
     'source-label source-select function'
     'deep-label deep-select function'
@@ -224,12 +224,11 @@ function runEffect() {
   gap: 2rem;
   align-items: center;
 }
-.choose-label {
-  grid-area: choose-label;
+.choice-label {
+  grid-area: choice-label;
   font-size: 1.5rem;
   font-weight: bold;
   justify-self: end;
-  padding: 0 1rem;
 }
 .choices {
   grid-area: choices;
@@ -269,6 +268,21 @@ function runEffect() {
   grid-area: run-effect;
   justify-self: end;
 }
+@keyframes yellowfade {
+  from {
+    background-color: yellow;
+  }
+  to {
+    background-color: transparent;
+  }
+}
+.trigger-message {
+  grid-area: trigger-message;
+  width: fit-content;
+  animation-name: yellowfade;
+  animation-duration: 3s;
+  font-weight: bold;
+}
 .code {
   white-space: pre;
   font-family: 'Courier New', Courier, monospace;
@@ -277,7 +291,6 @@ function runEffect() {
   padding: 0.5rem;
   border: solid 2px var(--gray-border);
 }
-
 label {
   font-weight: bold;
 }
@@ -289,24 +302,6 @@ select {
   color: black;
   border: solid 2px var(--gray-border);
   font-size: 1rem;
-}
-@keyframes yellowfade {
-  from {
-    background-color: yellow;
-  }
-  to {
-    background-color: transparent;
-  }
-}
-span {
-  height: 100%;
-}
-.trigger-message {
-  grid-area: trigger-message;
-  padding: 0.4rem;
-  animation-name: yellowfade;
-  animation-duration: 3s;
-  font-weight: bold;
 }
 ul {
   display: flex;

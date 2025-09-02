@@ -19,7 +19,6 @@ const { navButtons } = defineProps<NavBarI>()
 
 <style scoped>
 .nav-bar {
-  width: 100%;
   height: 5rem;
   position: sticky;
   top: 0;
@@ -28,6 +27,6 @@ const { navButtons } = defineProps<NavBarI>()
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0 1rem;
+  padding-left: 3rem;
 }
 </style>

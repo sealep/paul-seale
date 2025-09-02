@@ -17,6 +17,7 @@ button {
   height: 2rem;
   font-size: 1rem;
   background-color: var(--action-button);
+  color: black;
   border-radius: 5%;
   box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.5);
 }

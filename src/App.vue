@@ -33,7 +33,6 @@ const navButtons: NavButtonI[] = [
   padding: 0;
   box-sizing: border-box;
 }
-
 :root {
   --light-mint: #bfffed;
   --vue-ocean-green: #42b883;
@@ -44,7 +43,6 @@ const navButtons: NavButtonI[] = [
   --disabled-bg: #f2f2f2;
   --disabled-text: #999999;
 }
-
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
