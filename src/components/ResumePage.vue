@@ -1,3 +1,49 @@
+<script setup lang="ts">
+/* Author: Paul Seale */
+
+window.onload = function () {
+  let intervalId: number | null = null
+  const scrollUpElem = document.querySelector('.scrollup')
+  const scrollDownElem: HTMLElement | null =
+    document.querySelector('.scrolldown')
+  const scrollableElem: HTMLElement | null =
+    document.querySelector('.scrollable')
+
+  function clearIntervalId() {
+    if (intervalId) {
+      clearInterval(intervalId)
+      intervalId = null
+    }
+  }
+
+  function scrollUp() {
+    scrollableElem!.scrollTop--
+  }
+
+  function scrollDown() {
+    scrollableElem!.scrollTop++
+  }
+
+  function mouseDownScrollDown() {
+    clearIntervalId()
+    intervalId = setInterval(scrollDown, 1)
+  }
+
+  function mouseDownScrollUp() {
+    clearIntervalId()
+    intervalId = setInterval(scrollUp, 1)
+  }
+
+  function mouseUp() {
+    clearIntervalId()
+  }
+
+  scrollUpElem!.addEventListener('mousedown', mouseDownScrollUp)
+  scrollUpElem!.addEventListener('mouseup', mouseUp)
+  scrollDownElem!.addEventListener('mousedown', mouseDownScrollDown)
+  scrollDownElem!.addEventListener('mouseup', mouseUp)
+}
+</script>
 <template>
   <div class="resume">
     <div class="scene">
