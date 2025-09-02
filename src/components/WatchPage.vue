@@ -239,11 +239,13 @@ function runEffect() {
   grid-area: object;
 }
 .source-label {
+  margin-top: 1rem;
   margin-right: 0.5rem;
   grid-area: source-label;
   justify-self: end;
 }
 .source-select {
+  margin-top: 1rem;
   margin-right: 0.5rem;
   grid-area: source-select;
 }
@@ -296,7 +298,7 @@ function runEffect() {
   font-weight: bold;
   background-color: var(--white-old-paper);
   padding: 0.5rem;
-  border: solid 2px var(--gray-border);
+  border: solid 2px var(--dark-grayish);
 }
 label {
   font-weight: bold;
@@ -307,7 +309,7 @@ select {
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
   color: black;
-  border: solid 2px var(--gray-border);
+  border: solid 2px var(--dark-grayish);
   font-size: 1rem;
 }
 ul {

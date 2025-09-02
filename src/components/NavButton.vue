@@ -37,6 +37,6 @@ a {
   border-radius: 5%;
 }
 a.router-link-active {
-  box-shadow: 0 0 0 0.2rem var(--light-bluewood);
+  box-shadow: 0 0 0 0.2rem var(--vue-pickled-bluewood);
 }
 </style>
