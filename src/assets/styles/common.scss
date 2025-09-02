@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-size: 1vw;
+}
+
+body {
+  height: 100%;
+  background-color: burlywood;
+  font-family: 'Arimo', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 4em;
+  padding-bottom: 1em;
+}
+
+h1 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+p {
+  font-size: 2em;
+  padding-bottom: 0.5em;
+  padding-left: 0.5em;
+}
+
+ul {
+  font-size: 2em;
+}
+
+.history {
+  padding: 1em 0.5em;
+}
+
+.title {
+  font-weight: bold;
+  list-style: none;
+}
+
+.duties {
+  padding-left: 1.5em;
+}
+
+.link img {
+  width: 2em;
+  height: auto;
+  vertical-align: bottom;
+  margin-right: 0.5em;
+}
+
+.error404 {
+  margin: 0;
+  padding: 0;
+  font-size: 6em;
+  font-weight: bold;
+}

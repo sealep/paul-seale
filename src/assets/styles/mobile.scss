@@ -1,0 +1,88 @@
+$screen-width: 80vw;
+$screen-height: 85vh;
+
+h1 {
+  font-size: 3em;
+}
+
+.scene {
+  height: 95%;
+}
+
+.device {
+  font-size: 2em;
+  width: $screen-width;
+  height: 100%;
+  padding-top: 0.5em;
+  border: 2em solid black;
+  border-radius: 6em;
+  background-color: #333;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.mobile-top {
+  flex: 0 0 8%;
+  display: flex;
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+}
+
+.mic {
+  width: 20%;
+  height: 1em;
+  padding: 0.25em;
+  border-radius: 0.5em;
+  background-color: silver;
+  background-image: linear-gradient(to right, transparent, black, transparent);
+  background-origin: content-box;
+  background-size: 10% 100%;
+  background-position: center left;
+  background-repeat: repeat-x;
+}
+
+.mobile-bottom {
+  flex: 0 0 8%;
+  display: flex;
+  background-color: transparent;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.button {
+  width: 5%;
+  height: 2em;
+  border: 1px solid black;
+  border-radius: 0.5em;
+  background-color: #777;
+}
+
+.mouse {
+  width: 20%;
+  height: 3em;
+  border: 0.3em solid #777;
+  border-radius: 6em;
+  background-color: black;
+}
+
+.screen {
+  flex: 1 1 auto;
+  background-color: #ddd;
+  display: flex;
+  flex-flow: column nowrap;
+  overflow: hidden;
+  padding: 1em;
+}
+
+.scrollable {
+  box-sizing: content-box;
+  width: 100%;
+  padding-right: 4em;
+  background-color: #ddd;
+  overflow-y: scroll;
+}
+
+.history {
+  padding-left: 0;
+}
