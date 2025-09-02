@@ -121,8 +121,8 @@ function runEffect() {
 
 <template>
   <div class="page">
-    <div class="choice-label">Choose a source type:</div>
-    <div class="choices">
+    <div class="choice">
+      <span class="choice-label">Choose a source type:</span>
       <ul>
         <li v-for="(navButton, index) in navButtons" :key="index">
           <NavButton v-bind="navButton" />
@@ -213,7 +213,7 @@ function runEffect() {
   display: grid;
   grid-template-columns: 20% 30% 50%;
   grid-template-areas:
-    'choice-label choices choices'
+    'choice choice choice'
     'description description object'
     'source-label source-select function'
     'deep-label deep-select function'
@@ -228,8 +228,8 @@ function runEffect() {
   font-size: 1.3rem;
   font-weight: bold;
 }
-.choices {
-  grid-area: choices;
+.choice {
+  grid-area: choice;
 }
 .description {
   grid-area: description;
@@ -312,7 +312,7 @@ select {
   font-size: 1rem;
 }
 ul {
-  display: flex;
+  display: inline-flex;
   gap: 1rem;
   align-items: center;
   list-style-type: none;
