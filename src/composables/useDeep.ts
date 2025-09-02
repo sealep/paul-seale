@@ -1,8 +1,9 @@
-type DeepValue = number | boolean
+type DeepValue = number | boolean | undefined
 type DeepOption = { name: string; value: DeepValue }
 
 const deepOptions: DeepOption[] = [
-  { name: 'false /* default */', value: false },
+  { name: 'default', value: undefined },
+  { name: 'false', value: false },
   { name: 'true', value: true },
   { name: '1', value: 1 },
   { name: '2', value: 2 },
