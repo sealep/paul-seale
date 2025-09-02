@@ -42,6 +42,10 @@ window.onload = function () {
   scrollUpElem!.addEventListener('mouseup', mouseUp)
   scrollDownElem!.addEventListener('mousedown', mouseDownScrollDown)
   scrollDownElem!.addEventListener('mouseup', mouseUp)
+  scrollUpElem!.addEventListener('touchdown', mouseDownScrollUp)
+  scrollUpElem!.addEventListener('touchup', mouseUp)
+  scrollDownElem!.addEventListener('touchdown', mouseDownScrollDown)
+  scrollDownElem!.addEventListener('touchup', mouseUp)
 }
 </script>
 <template>
