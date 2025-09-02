@@ -3,8 +3,6 @@
 
 /* Author: Paul Seale */
 
-@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap');
-
 @media (max-width: 480px) {
   @include meta.load-css('@/assets/styles/mobile.scss');
 }

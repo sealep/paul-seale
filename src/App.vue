@@ -25,7 +25,8 @@ const navButtons: NavButtonI[] = [
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -35,15 +36,17 @@ const navButtons: NavButtonI[] = [
   --light-mint: #bfffed;
   --vue-ocean-green: #42b883;
   --vue-pickled-bluewood: #35495e;
+  --light-bluewood: #798c92;
   --white-old-paper: #f6eee3;
   --dark-grayish: #888888;
-  --steely-blue: #9eb6da;
+  --steely-blue: #b0d8fc;
   --disabled-gray-light: #f2f2f2;
   --disabled-gray-dark: #999999;
 }
 body {
   background-color: var(--light-mint);
-  font-family: 'Arimo', sans-serif;
+  /* font-family: 'Arimo', sans-serif; */
+  font-family: 'DM Serif Text', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -25,9 +25,8 @@ button {
   font-size: 1rem;
   background-color: var(--vue-pickled-bluewood);
   color: white;
-  border: 1px solid white;
   border-radius: 5%;
-  box-shadow: 0 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.5);
 }
 button:hover {
   transform: scale(1.01);
@@ -37,6 +36,7 @@ a {
   border-radius: 5%;
 }
 a.router-link-active {
-  box-shadow: 0 0 0 0.2rem var(--vue-pickled-bluewood);
+  border: 1px solid white;
+  box-shadow: 0 0 0 0.2rem var(--light-bluewood);
 }
 </style>

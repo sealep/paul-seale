@@ -42,8 +42,8 @@ const navButtons: NavButtonI[] = [
   },
 ]
 
-const { sourceType = SourceType.REF } = defineProps<{
-  sourceType?: SourceType
+const { sourceType } = defineProps<{
+  sourceType: SourceType
 }>()
 const ws = computed(() => useWatchSource(sourceType))
 
@@ -223,8 +223,8 @@ function runEffect() {
   margin-right: 1rem;
   grid-area: choice-label;
   justify-self: end;
-  font-size: 1.3rem;
-  font-weight: bold;
+  font-size: 1.4rem;
+  /* font-weight: bold; */
 }
 .choice {
   grid-area: choice;
