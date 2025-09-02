@@ -68,7 +68,7 @@ h1 {
 
 .screen {
   flex: 1 1 auto;
-  background-color: #ddd;
+  background-color: var(--white-old-paper);
   display: flex;
   flex-flow: column nowrap;
   overflow: hidden;
@@ -79,7 +79,7 @@ h1 {
   box-sizing: content-box;
   width: 100%;
   padding-right: 4em;
-  background-color: #ddd;
+  background-color: var(--white-old-paper);
   overflow-y: scroll;
 }
 

@@ -13,7 +13,7 @@ $laptop-height: calc($screen-height + $keyboard-height);
 
 .device {
   position: relative;
-  bottom: 4%;
+  bottom: 20%;
   width: 100%;
   height: $laptop-height;
   transform-style: preserve-3d;
@@ -34,7 +34,7 @@ $laptop-height: calc($screen-height + $keyboard-height);
   padding-right: 4em;
   border: 2em solid #000;
   border-radius: 1em;
-  background-color: #ddd;
+  background-color: var(--white-old-paper);
   display: flex;
   flex-flow: column nowrap;
   overflow: hidden;
