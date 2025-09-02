@@ -213,7 +213,7 @@ function runEffect() {
 .page {
   padding: 3rem;
   display: grid;
-  grid-template-columns: 30% 20% 40%;
+  grid-template-columns: 20% 20% 50%;
   grid-template-areas:
     'choice-label choices choices'
     'description description object'
