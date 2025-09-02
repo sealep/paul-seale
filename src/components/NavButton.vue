@@ -25,18 +25,18 @@ button {
   font-size: 1rem;
   background-color: var(--vue-pickled-bluewood);
   color: white;
+  border: 1px solid white;
   border-radius: 5%;
-  box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);
 }
 button:hover {
-  transform: scale(1.1);
+  transform: scale(1.01);
 }
 a {
   display: block;
   border-radius: 5%;
 }
 a.router-link-active {
-  background-color: var(--light-bluewood);
-  padding: 0.2rem;
+  box-shadow: 0 0 0 0.2rem var(--light-bluewood);
 }
 </style>

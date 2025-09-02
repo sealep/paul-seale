@@ -17,36 +17,34 @@ import {
 import type { NavButtonI } from './NavButton.vue'
 import NavButton from './NavButton.vue'
 
-interface WatchFunctionI {
-  sourceType: SourceType
-}
-
 const navButtons: NavButtonI[] = [
   {
     buttonName: 'Ref',
-    linkName: 'WatchPage',
+    linkName: 'WatchPageWithParam',
     params: { sourceType: `${SourceType.REF}` },
   },
   {
     buttonName: 'ShallowRef',
-    linkName: 'WatchPage',
+    linkName: 'WatchPageWithParam',
     params: { sourceType: `${SourceType.SHALLOW_REF}` },
   },
 
   {
     buttonName: 'Reactive',
-    linkName: 'WatchPage',
+    linkName: 'WatchPageWithParam',
     params: { sourceType: `${SourceType.REACTIVE}` },
   },
 
   {
     buttonName: 'ShallowReactive',
-    linkName: 'WatchPage',
+    linkName: 'WatchPageWithParam',
     params: { sourceType: `${SourceType.SHALLOW_REACTIVE}` },
   },
 ]
 
-const { sourceType } = defineProps<WatchFunctionI>()
+const { sourceType = SourceType.REF } = defineProps<{
+  sourceType?: SourceType
+}>()
 const ws = computed(() => useWatchSource(sourceType))
 
 const sourceExpOptionsIndex = ref(0)

@@ -18,14 +18,15 @@ button {
   font-size: 1rem;
   background-color: var(--action-button);
   color: black;
+  border: 1px solid black;
   border-radius: 5%;
-  box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);
 }
 button:disabled {
   background-color: var(--disabled-bg);
   color: var(--disabled-text);
 }
 button:hover {
-  transform: scale(1.1);
+  transform: scale(1.01);
 }
 </style>

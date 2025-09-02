@@ -2,7 +2,6 @@
 import type { NavButtonI } from '@/components/NavButton.vue'
 import NavBar from '@/components/NavBar.vue'
 import { RouterView } from 'vue-router'
-import { SourceType } from './composables/useWatchSource'
 
 const navButtons: NavButtonI[] = [
   {
@@ -16,7 +15,6 @@ const navButtons: NavButtonI[] = [
   {
     buttonName: 'Watch',
     linkName: 'WatchPage',
-    params: { sourceType: `${SourceType.REF}` },
   },
 ]
 </script>

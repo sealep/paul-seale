@@ -1,6 +1,7 @@
 import HomePage from '@/components/HomePage.vue'
 import ResumePage from '@/components/ResumePage.vue'
-import WatchFunction from '@/components/WatchPage.vue'
+import WatchPage from '@/components/WatchPage.vue'
+import { SourceType } from '@/composables/useWatchSource'
 import {
   createRouter,
   createWebHistory,
@@ -19,12 +20,19 @@ const routes = [
     component: ResumePage,
   },
   {
-    path: '/watch/:sourceType',
+    path: '/watch',
     name: 'WatchPage',
-    component: WatchFunction,
-    props: (route: RouteLocationNormalizedLoaded) => ({
-      sourceType: Number(route.params.sourceType),
-    }),
+    redirect: { path: `/watch/${SourceType.REF}` },
+    children: [
+      {
+        path: ':sourceType',
+        name: 'WatchPageWithParam',
+        component: WatchPage,
+        props: (route: RouteLocationNormalizedLoaded) => ({
+          sourceType: Number(route.params.sourceType),
+        }),
+      },
+    ],
   },
 ]
 
