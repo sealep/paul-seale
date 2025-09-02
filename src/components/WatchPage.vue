@@ -232,6 +232,7 @@ function runEffect() {
   grid-area: choice;
 }
 .description {
+  margin-right: 0.5rem;
   grid-area: description;
   font-size: 1.2rem;
 }

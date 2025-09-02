@@ -36,7 +36,7 @@ a {
   border-radius: 5%;
 }
 a.router-link-active {
-  background-color: var(--vue-pickled-bluewood);
+  background-color: var(--light-bluewood);
   padding: 0.2rem;
 }
 </style>

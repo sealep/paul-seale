@@ -37,6 +37,7 @@ const navButtons: NavButtonI[] = [
   --light-mint: #bfffed;
   --vue-ocean-green: #42b883;
   --vue-pickled-bluewood: #35495e;
+  --light-bluewood: #798d92;
   --white-old-paper: #f6eee3;
   --gray-border: #888888;
   --action-button: #9eb6da;
