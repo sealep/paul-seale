@@ -12,7 +12,7 @@ h1 {
 .device {
   font-size: 2em;
   width: $screen-width;
-  height: 100%;
+  height: $screen-height;
   padding-top: 0.5em;
   border: 2em solid black;
   border-radius: 6em;
@@ -73,7 +73,7 @@ h1 {
   flex-flow: column nowrap;
   overflow: hidden;
   padding: 1em;
-  border-radius: 5%;
+  border-radius: 1%;
 }
 
 .scrollable {
