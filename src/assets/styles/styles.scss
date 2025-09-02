@@ -3,9 +3,9 @@
 
 /* Author: Paul Seale */
 
-@media (max-width: 480px) {
+@media (max-width: 820px) {
   @include meta.load-css('@/assets/styles/mobile.scss');
 }
-@media (min-width: 481px) {
+@media (min-width: 821px) {
   @include meta.load-css('@/assets/styles/desktop.scss');
 }
