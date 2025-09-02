@@ -1,7 +1,6 @@
 import HomePage from '@/components/HomePage.vue'
 import ResumePage from '@/components/ResumePage.vue'
-import WatchFunction from '@/components/WatchFunction.vue'
-import WatchPage from '@/components/WatchPage.vue'
+import WatchFunction from '@/components/WatchPage.vue'
 import {
   createRouter,
   createWebHistory,
@@ -20,20 +19,12 @@ const routes = [
     component: ResumePage,
   },
   {
-    path: '/watch',
+    path: '/watch/:sourceType',
     name: 'WatchPage',
-    component: WatchPage,
-
-    children: [
-      {
-        path: ':sourceType',
-        name: 'WatchFunction',
-        component: WatchFunction,
-        props: (route: RouteLocationNormalizedLoaded) => ({
-          sourceType: Number(route.params.sourceType),
-        }),
-      },
-    ],
+    component: WatchFunction,
+    props: (route: RouteLocationNormalizedLoaded) => ({
+      sourceType: Number(route.params.sourceType),
+    }),
   },
 ]
 
