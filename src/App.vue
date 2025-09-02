@@ -43,6 +43,10 @@ const navButtons: NavButtonI[] = [
   --disabled-gray-light: #f2f2f2;
   --disabled-gray-dark: #999999;
 }
+html,
+body {
+  height: 100%;
+}
 body {
   background-color: var(--light-mint);
   /* font-family: 'Arimo', sans-serif; */

@@ -305,6 +305,7 @@ label {
 }
 select {
   width: 100%;
+  padding-left: 0.5rem;
   height: 2rem;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
