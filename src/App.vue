@@ -26,6 +26,12 @@ const navButtons: NavButtonI[] = [
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --light-mint: #bfffed;
   --vue-ocean-green: #42b883;
@@ -36,14 +42,11 @@ const navButtons: NavButtonI[] = [
   --disabled-bg: #f2f2f2;
   --disabled-text: #999999;
 }
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--light-mint);
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   font-family: 'Arimo', sans-serif;
-  color: black;
 }
 </style>

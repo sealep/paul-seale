@@ -200,7 +200,7 @@ function getRefEffectOptions(
 ): EffectOption[] {
   return [
     {
-      name: `${sourceName}.value = { /* clone */ }`,
+      name: `${sourceName}.value = { /* new */ }`,
       effect: () => (source.value = newRawObj()),
     },
     {

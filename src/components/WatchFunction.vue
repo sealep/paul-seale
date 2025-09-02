@@ -39,10 +39,12 @@ watchEffect(() => {
   functionDisplay.value = `
     watch(
         ${ws.value.sourceExpOptions[sourceExpOptionsIndex.value].name},
-        ( ) => { flash('${effect} triggered watcher!') },
+        ( ) => {
+          flash('${effect} triggered watcher!')
+        },
         ${deep}
     )
-  `
+  `.trim()
 })
 
 const effectDisplay = ref('')
@@ -93,16 +95,21 @@ function runEffect() {
 </script>
 
 <template>
-  <div class="code">
-    {{
-      `const ${ws.sourceName} = ${ws.sourceFunction}(` +
-      JSON.stringify(unref(ws.source), null, 2).replace(/\"/g, '') +
-      ')'
-    }}
-  </div>
-  <div>
-    <div class="params">
+  <div class="view">
+    <div class="code object">
+      {{
+        `const ${ws.sourceName} = ${ws.sourceFunction}(` +
+        JSON.stringify(unref(ws.source), null, 2).replace(/\"/g, '') +
+        ')'
+      }}
+    </div>
+    <div class="code function">
+      {{ functionDisplay }}
+    </div>
+    <div class="source-label">
       <label for="selectSourceExp">Select watch source:</label>
+    </div>
+    <div class="source-select">
       <select id="selectSourceExp" v-model.number="sourceExpOptionsIndex">
         <option
           v-for="(sourceExpOption, index) in ws.sourceExpOptions"
@@ -112,7 +119,11 @@ function runEffect() {
           {{ sourceExpOption.name }}
         </option>
       </select>
+    </div>
+    <div class="deep-label">
       <label for="selectDeep">Select deep option:</label>
+    </div>
+    <div class="deep-select">
       <select id="selectDeep" v-model.number="deepOptionsIndex">
         <option
           v-for="(deepOption, index) in deepOptions"
@@ -123,51 +134,93 @@ function runEffect() {
         </option>
       </select>
     </div>
+    <div class="effect-label">
+      <label for="selectSourceEffect">Select effect to run:</label>
+    </div>
+    <div class="effect-select">
+      <select id="selectSourceEffect" v-model.number="sourceEffectOptionsIndex">
+        <option
+          v-for="(sourceEffectOption, index) in ws.sourceEffectOptions"
+          :key="index"
+          :value="index"
+        >
+          {{ sourceEffectOption.name }}
+        </option>
+      </select>
+    </div>
+    <div class="run-effect">
+      <ActionButton
+        :disabled="!!triggerMessage"
+        :buttonName="'Run Effect'"
+        :action="runEffect"
+      />
+    </div>
+    <div class="trigger-message" v-show="triggerMessage">
+      {{ triggerMessage }}
+    </div>
   </div>
-  <div class="code">
-    {{ functionDisplay }}
-  </div>
-  <div class="params">
-    <label for="selectSourceEffect">Select effect to run:</label>
-    <select id="selectSourceEffect" v-model.number="sourceEffectOptionsIndex">
-      <option
-        v-for="(sourceEffectOption, index) in ws.sourceEffectOptions"
-        :key="index"
-        :value="index"
-      >
-        {{ sourceEffectOption.name }}
-      </option>
-    </select>
-  </div>
-  <ActionButton
-    :disabled="!!triggerMessage"
-    :buttonName="'Run Effect'"
-    :action="runEffect"
-  />
-  <p class="trigger-message" v-show="triggerMessage">
-    {{ triggerMessage }}
-  </p>
 </template>
 
 <style scoped>
+.view {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 15% 25% 60%;
+  grid-template-areas:
+    '. object .'
+    'source-label source-select function'
+    'deep-label deep-select function'
+    'effect-label effect-select function'
+    'run-effect trigger-message .';
+  gap: 1rem;
+  align-items: center;
+}
+
+.object {
+  grid-area: object;
+}
+.source-label {
+  grid-area: source-label;
+  justify-self: end;
+}
+.source-select {
+  grid-area: source-select;
+}
+.deep-label {
+  grid-area: deep-label;
+  justify-self: end;
+}
+.deep-select {
+  grid-area: deep-select;
+}
+.effect-label {
+  grid-area: effect-label;
+  justify-self: end;
+}
+.effect-select {
+  grid-area: effect-select;
+}
+.function {
+  grid-area: function;
+}
+.run-effect {
+  grid-area: run-effect;
+  justify-self: end;
+}
 .code {
   white-space: pre;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
   background-color: var(--white-old-paper);
-  padding: 1rem;
+  padding: 0.5rem;
   border: solid 2px var(--gray-border);
 }
-.params {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
+
 label {
   font-weight: bold;
 }
 select {
-  width: 17rem;
+  width: 100%;
   height: 2rem;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
@@ -183,8 +236,12 @@ select {
     background-color: transparent;
   }
 }
+span {
+  height: 100%;
+}
 .trigger-message {
-  padding: 1rem;
+  grid-area: trigger-message;
+  padding: 0.4rem;
   animation-name: yellowfade;
   animation-duration: 3s;
   font-weight: bold;
