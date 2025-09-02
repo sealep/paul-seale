@@ -200,7 +200,7 @@ function getRefEffectOptions(
 ): EffectOption[] {
   return [
     {
-      name: `${sourceName}.value = { /* new */ }`,
+      name: `${sourceName}.value = { n: 0, ... }`,
       effect: () => (source.value = newRawObj()),
     },
     {

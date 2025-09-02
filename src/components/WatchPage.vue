@@ -63,15 +63,13 @@ watchEffect(() => {
       : `{ deep: ${deepOptions[deepOptionsIndex.value].name} }`
   const effect =
     ws.value.sourceEffectOptions[sourceEffectOptionsIndex.value].name
-  functionDisplay.value = `
-    watch(
-        ${ws.value.sourceExpOptions[sourceExpOptionsIndex.value].name},
-        ( ) => {
-          flash('${effect} triggered watcher!')
-        },
-        ${deep}
-    )
-  `.trim()
+  functionDisplay.value = `watch(
+  ${ws.value.sourceExpOptions[sourceExpOptionsIndex.value].name},
+  ( ) => {
+    flash('${effect} triggered watcher!')
+  },
+  ${deep}
+)`
 })
 
 const effectDisplay = ref('')
@@ -133,10 +131,10 @@ function runEffect() {
     </div>
     <div class="description">
       <p>
-        This demonstrates the usage of the <em>watch</em> function from the Vue
-        Composition API. You can observe the behavior of the function when
-        varying the source expression to be watched, the 'deep' option, and the
-        effect to trigger the watcher.
+        This demonstrates the <em>watch</em> function from the Vue Composition
+        API. You can observe the behavior of the function when varying the
+        source expression to be watched, the 'deep' option, and the effect to
+        attempt to trigger the watcher.
       </p>
       <p>
         Note the difference in behavior when the source expression is an object
@@ -211,9 +209,9 @@ function runEffect() {
 
 <style scoped>
 .page {
-  padding: 3rem;
+  padding: 1rem;
   display: grid;
-  grid-template-columns: 20% 20% 50%;
+  grid-template-columns: 20% 30% 50%;
   grid-template-areas:
     'choice-label choices choices'
     'description description object'
@@ -221,14 +219,14 @@ function runEffect() {
     'deep-label deep-select function'
     'effect-label effect-select function'
     'run-effect trigger-message .';
-  gap: 2rem;
   align-items: center;
 }
 .choice-label {
+  margin-right: 1rem;
   grid-area: choice-label;
-  font-size: 1.5rem;
-  font-weight: bold;
   justify-self: end;
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 .choices {
   grid-area: choices;
@@ -238,33 +236,42 @@ function runEffect() {
   font-size: 1.2rem;
 }
 .object {
+  margin-top: 1rem;
   grid-area: object;
 }
 .source-label {
+  margin-right: 0.5rem;
   grid-area: source-label;
   justify-self: end;
 }
 .source-select {
+  margin-right: 0.5rem;
   grid-area: source-select;
 }
 .deep-label {
+  margin-right: 0.5rem;
   grid-area: deep-label;
   justify-self: end;
 }
 .deep-select {
+  margin-right: 0.5rem;
   grid-area: deep-select;
 }
 .effect-label {
+  margin-right: 0.5rem;
   grid-area: effect-label;
   justify-self: end;
 }
 .effect-select {
+  margin-right: 0.5rem;
   grid-area: effect-select;
 }
 .function {
+  margin-top: 1rem;
   grid-area: function;
 }
 .run-effect {
+  margin-right: 0.5rem;
   grid-area: run-effect;
   justify-self: end;
 }
@@ -277,8 +284,9 @@ function runEffect() {
   }
 }
 .trigger-message {
-  grid-area: trigger-message;
+  margin-left: 0.5rem;
   width: fit-content;
+  grid-area: trigger-message;
   animation-name: yellowfade;
   animation-duration: 3s;
   font-weight: bold;
@@ -306,9 +314,10 @@ select {
 ul {
   display: flex;
   gap: 1rem;
+  align-items: center;
   list-style-type: none;
 }
 p {
-  margin: 1rem;
+  margin: 0.5rem 0;
 }
 </style>
