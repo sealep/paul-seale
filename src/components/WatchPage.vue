@@ -332,9 +332,6 @@ select {
   border: solid 2px var(--dark-grayish);
   font-size: 1rem;
 }
-option {
-  width: 100%;
-}
 ul {
   display: inline-flex;
   gap: 1rem;

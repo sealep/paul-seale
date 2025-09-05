@@ -29,4 +29,9 @@ const { navButtons } = defineProps<NavBarI>()
   align-items: center;
   gap: 1rem;
 }
+@media (max-width: 480px) {
+  .nav-bar {
+    justify-content: space-around;
+  }
+}
 </style>
