@@ -346,7 +346,7 @@ p {
   height: 2.5rem;
   font-size: 1rem;
 }
-@media (max-width: 640px) {
+@media (orientation: portrait) {
   :deep(.nav-button) {
     width: 4.5rem;
     height: 2rem;
@@ -358,7 +358,7 @@ p {
   height: 2.5rem;
   font-size: 1rem;
 }
-@media (max-width: 640px) {
+@media (orientation: portrait) {
   :deep(.action-button) {
     width: 4.5rem;
     height: 2rem;
