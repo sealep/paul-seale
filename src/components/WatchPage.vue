@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ActionButton from '@/ActionButton.vue'
+import ActionButton from '@/components/ActionButton.vue'
 import useDeep, { type DeepValue } from '@/composables/useDeep'
 import useWatchSource, {
   SourceType,
@@ -340,5 +340,29 @@ ul {
 }
 p {
   margin: 0.5rem 0;
+}
+:deep(.nav-button) {
+  width: 9rem;
+  height: 2.5rem;
+  font-size: 1rem;
+}
+@media (max-width: 640px) {
+  :deep(.nav-button) {
+    width: 4.5rem;
+    height: 2rem;
+    font-size: 0.55rem;
+  }
+}
+:deep(.action-button) {
+  width: 9rem;
+  height: 2.5rem;
+  font-size: 1rem;
+}
+@media (max-width: 640px) {
+  :deep(.action-button) {
+    width: 4.5rem;
+    height: 2rem;
+    font-size: 0.55rem;
+  }
 }
 </style>

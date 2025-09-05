@@ -30,10 +30,19 @@ const { navButtons } = defineProps<NavBarI>()
   align-items: center;
   gap: 1rem;
 }
-@media (max-width: 480px) {
+:deep(.nav-button) {
+  width: 9rem;
+  height: 2.5rem;
+  font-size: 1rem;
+}
+@media (max-width: 640px) {
   .nav-bar {
     padding: 0 0.5rem;
     justify-content: space-evenly;
+  }
+  :deep(.nav-button) {
+    width: 5rem;
+    height: 2.5rem;
   }
 }
 </style>

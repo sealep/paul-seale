@@ -51,9 +51,4 @@ body {
 .router-view {
   overflow-y: scroll;
 }
-@media (max-width: 480px) {
-  .router-view {
-    scrollbar-width: none;
-  }
-}
 </style>

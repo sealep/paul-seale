@@ -13,22 +13,19 @@ const { buttonName, linkName, params } = defineProps<NavButtonI>()
 <template>
   <div>
     <RouterLink :to="{ name: linkName, params }">
-      <button>{{ buttonName }}</button>
+      <button class="nav-button">{{ buttonName }}</button>
     </RouterLink>
   </div>
 </template>
 
 <style scoped>
-button {
-  width: 9rem;
-  height: 2.5rem;
-  font-size: 1rem;
+.nav-button {
   background-color: var(--vue-pickled-bluewood);
   color: white;
   border-radius: 5%;
   box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.5);
 }
-button:hover {
+.nav-button:hover {
   transform: scale(1.01);
 }
 a {
@@ -38,11 +35,5 @@ a {
 a.router-link-active {
   border: 1px solid white;
   box-shadow: 0 0 0 0.2rem var(--light-bluewood);
-}
-@media (max-width: 480px) {
-  button {
-    width: 5rem;
-    font-size: 1rem;
-  }
 }
 </style>
