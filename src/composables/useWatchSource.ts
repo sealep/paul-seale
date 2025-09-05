@@ -4,6 +4,7 @@ import {
   ref,
   shallowReactive,
   shallowRef,
+  watch,
   type Reactive,
   type Ref,
   type ShallowReactive,
@@ -40,7 +41,6 @@ type ExpOption = {
 }
 
 type EffectOption = { name: string; effect: () => void }
-
 function newRawObj() {
   const o: RawSource = {
     n: 0,
@@ -53,6 +53,26 @@ function newRawObj() {
 }
 
 const r: Ref<RawSource> = ref(newRawObj())
+// This is necessary because 'r.value = ...' is possible
+const rSourceExps = [
+  { name: `r.value`, exp: r.value },
+  { name: `r.value.o2`, exp: r.value.o2 },
+  { name: `r.value.o2.a`, exp: r.value.o2.a },
+  {
+    name: `r.value.o2.a[1]`,
+    exp: r.value.o2.a[1],
+  },
+]
+watch(
+  () => r.value,
+  () => {
+    rSourceExps[0].exp = r.value
+    rSourceExps[1].exp = r.value.o2
+    rSourceExps[2].exp = r.value.o2.a
+    rSourceExps[3].exp = r.value.o2.a[1]
+  },
+)
+
 const sr: ShallowRef<RawSource> = shallowRef(newRawObj())
 const ro: Reactive<RawSource> = reactive(newRawObj())
 const sro: ShallowReactive<RawSource> = shallowReactive(newRawObj())
@@ -108,20 +128,9 @@ function getRefExpOptions(
   isShallow: boolean,
   sourceName: string,
 ): ExpOption[] {
-  const notForShallow = isShallow
-    ? []
-    : [
-        { name: `${sourceName}.value`, exp: source.value },
-        { name: `${sourceName}.value.o2`, exp: source.value.o2 },
-        { name: `${sourceName}.value.o2.a`, exp: source.value.o2.a },
-        {
-          name: `${sourceName}.value.o2.a[1]`,
-          exp: source.value.o2.a[1],
-        },
-      ]
   return [
     { name: sourceName, exp: source },
-    ...notForShallow,
+    ...(isShallow ? [] : rSourceExps),
     { name: `( ) => ${sourceName}`, exp: () => source },
     { name: `( ) => ${sourceName}.value`, exp: () => source.value },
     { name: `( ) => ${sourceName}.value.n`, exp: () => source.value.n },

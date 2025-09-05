@@ -45,24 +45,32 @@ const navButtons: NavButtonI[] = [
 const { sourceType } = defineProps<{
   sourceType: SourceType
 }>()
-const ws = computed(() => useWatchSource(sourceType))
 
-const sourceExpOptionsIndex = ref(0)
-const sourceEffectOptionsIndex = ref(0)
+const watchSources = [
+  useWatchSource(SourceType.REF),
+  useWatchSource(SourceType.SHALLOW_REF),
+  useWatchSource(SourceType.REACTIVE),
+  useWatchSource(SourceType.SHALLOW_REACTIVE),
+]
+const ws = computed(() => watchSources[sourceType])
+
+const sourceExpOptionIndexes = ref([0, 0, 0, 0])
+const sourceEffectOptionIndexes = ref([0, 0, 0, 0])
 
 const { deepOptions } = useDeep()
-const deepOptionsIndex = ref(0)
+const deepOptionIndexes = ref([0, 0, 0, 0])
 
 const functionDisplay = ref('')
 watchEffect(() => {
   const deep =
-    deepOptions[deepOptionsIndex.value].name === 'default'
+    deepOptions[deepOptionIndexes.value[sourceType]].name === 'default'
       ? '{ }'
-      : `{ deep: ${deepOptions[deepOptionsIndex.value].name} }`
+      : `{ deep: ${deepOptions[deepOptionIndexes.value[sourceType]].name} }`
   const effect =
-    ws.value.sourceEffectOptions[sourceEffectOptionsIndex.value].name
+    ws.value.sourceEffectOptions[sourceEffectOptionIndexes.value[sourceType]]
+      .name
   functionDisplay.value = `watch(
-  ${ws.value.sourceExpOptions[sourceExpOptionsIndex.value].name},
+  ${ws.value.sourceExpOptions[sourceExpOptionIndexes.value[sourceType]].name},
   ( ) => {
     flash('${effect} triggered watcher!')
   },
@@ -73,7 +81,9 @@ watchEffect(() => {
 const effectDisplay = ref('')
 watchEffect(() => {
   effectDisplay.value =
-    ws.value.sourceEffectOptions[sourceEffectOptionsIndex.value].name
+    ws.value.sourceEffectOptions[
+      sourceEffectOptionIndexes.value[sourceType]
+    ].name
 })
 
 const triggerMessage = ref('')
@@ -82,9 +92,10 @@ function createWatcher(exp: WatchSource, deep: DeepValue): WatchHandle {
   // 'sync' required as 'r.value =...' will update 'ws' which triggers
   // 'setUpWatcher' which stops the watcher before it executes the effect
   // of 'r.value ...'
-  const options: WatchOptions = { deep, flush: 'sync' }
+  const options: WatchOptions = { deep, flush: 'pre' }
   const effect =
-    ws.value.sourceEffectOptions[sourceEffectOptionsIndex.value].name
+    ws.value.sourceEffectOptions[sourceEffectOptionIndexes.value[sourceType]]
+      .name
   return watch(
     exp,
     () => {
@@ -104,8 +115,8 @@ function setUpWatcher() {
     watcher.stop()
   }
   watcher = createWatcher(
-    ws.value.sourceExpOptions[sourceExpOptionsIndex.value].exp,
-    deepOptions[deepOptionsIndex.value].value,
+    ws.value.sourceExpOptions[sourceExpOptionIndexes.value[sourceType]].exp,
+    deepOptions[deepOptionIndexes.value[sourceType]].value,
   )
 }
 watchEffect(() => {
@@ -113,7 +124,9 @@ watchEffect(() => {
 })
 
 function runEffect() {
-  ws.value.sourceEffectOptions[sourceEffectOptionsIndex.value].effect()
+  ws.value.sourceEffectOptions[
+    sourceEffectOptionIndexes.value[sourceType]
+  ].effect()
 }
 </script>
 
@@ -154,7 +167,10 @@ function runEffect() {
       <label for="selectSourceExp">Select watch source:</label>
     </div>
     <div class="source-select">
-      <select id="selectSourceExp" v-model.number="sourceExpOptionsIndex">
+      <select
+        id="selectSourceExp"
+        v-model.number="sourceExpOptionIndexes[sourceType]"
+      >
         <option
           v-for="(sourceExpOption, index) in ws.sourceExpOptions"
           :key="index"
@@ -168,7 +184,7 @@ function runEffect() {
       <label for="selectDeep">Select deep option:</label>
     </div>
     <div class="deep-select">
-      <select id="selectDeep" v-model.number="deepOptionsIndex">
+      <select id="selectDeep" v-model.number="deepOptionIndexes[sourceType]">
         <option
           v-for="(deepOption, index) in deepOptions"
           :key="index"
@@ -182,7 +198,10 @@ function runEffect() {
       <label for="selectSourceEffect">Select effect to run:</label>
     </div>
     <div class="effect-select">
-      <select id="selectSourceEffect" v-model.number="sourceEffectOptionsIndex">
+      <select
+        id="selectSourceEffect"
+        v-model.number="sourceEffectOptionIndexes[sourceType]"
+      >
         <option
           v-for="(sourceEffectOption, index) in ws.sourceEffectOptions"
           :key="index"
@@ -312,6 +331,9 @@ select {
   color: black;
   border: solid 2px var(--dark-grayish);
   font-size: 1rem;
+}
+option {
+  width: 100%;
 }
 ul {
   display: inline-flex;
