@@ -25,7 +25,6 @@ const navButtons: NavButtonI[] = [
 </template>
 
 <style>
-/* @import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');
 * {
   margin: 0;

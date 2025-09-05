@@ -39,4 +39,10 @@ a.router-link-active {
   border: 1px solid white;
   box-shadow: 0 0 0 0.2rem var(--light-bluewood);
 }
+@media (max-width: 480px) {
+  button {
+    width: 5rem;
+    font-size: 1rem;
+  }
+}
 </style>
