@@ -21,7 +21,7 @@ const navButtons: NavButtonI[] = [
 
 <template>
   <NavBar :navButtons="navButtons" />
-  <RouterView />
+  <RouterView :class="'router-view'" />
 </template>
 
 <style>
@@ -47,5 +47,8 @@ body {
   font-family: 'DM Serif Text', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.router-view {
+  overflow-y: scroll;
 }
 </style>
