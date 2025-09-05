@@ -35,7 +35,7 @@ const { navButtons } = defineProps<NavBarI>()
   height: 2.5rem;
   font-size: 1rem;
 }
-@media (max-width: 640px) {
+@media (orientation: portrait) {
   .nav-bar {
     padding: 0 0.5rem;
     justify-content: space-evenly;
