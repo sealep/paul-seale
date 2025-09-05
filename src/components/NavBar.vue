@@ -19,10 +19,11 @@ const { navButtons } = defineProps<NavBarI>()
 
 <style scoped>
 .nav-bar {
-  padding-left: 1rem;
+  padding: 0 1rem;
   margin-bottom: 1rem;
   height: 5rem;
   position: sticky;
+  top: 0;
   background-color: var(--vue-ocean-green);
   box-shadow: 0 1rem 1rem 0 rgba(0, 0, 0, 0.5);
   display: flex;
@@ -31,6 +32,7 @@ const { navButtons } = defineProps<NavBarI>()
 }
 @media (max-width: 480px) {
   .nav-bar {
+    padding: 0 0.5rem;
     justify-content: space-evenly;
   }
 }
