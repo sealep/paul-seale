@@ -35,14 +35,17 @@ const { navButtons } = defineProps<NavBarI>()
   height: 2.5rem;
   font-size: 1rem;
 }
+@media (max-width: 480px) {
+  :deep(.nav-button) {
+    width: 4.5rem;
+    height: 2rem;
+    font-size: 0.55rem;
+  }
+}
 @media (orientation: portrait) {
   .nav-bar {
     padding: 0 0.5rem;
     justify-content: space-evenly;
-  }
-  :deep(.nav-button) {
-    width: 5rem;
-    height: 2.5rem;
   }
 }
 </style>
