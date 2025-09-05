@@ -51,4 +51,28 @@ body {
 .router-view {
   overflow-y: scroll;
 }
+.nav-button {
+  width: 9rem;
+  height: 2.5rem;
+  font-size: 1rem;
+}
+@media (max-width: 480px) {
+  .nav-button {
+    width: 6rem;
+    height: 2rem;
+    font-size: 0.7rem;
+  }
+}
+.action-button {
+  width: 9rem;
+  height: 2.5rem;
+  font-size: 1rem;
+}
+@media (max-width: 480px) {
+  .action-button {
+    width: 6rem;
+    height: 2rem;
+    font-size: 0.7rem;
+  }
+}
 </style>

@@ -341,28 +341,4 @@ ul {
 p {
   margin: 0.5rem 0;
 }
-:deep(.nav-button) {
-  width: 9rem;
-  height: 2.5rem;
-  font-size: 1rem;
-}
-@media (max-width: 480px) {
-  :deep(.nav-button) {
-    width: 4.5rem;
-    height: 2rem;
-    font-size: 0.55rem;
-  }
-}
-:deep(.action-button) {
-  width: 9rem;
-  height: 2.5rem;
-  font-size: 1rem;
-}
-@media (max-width: 480px) {
-  :deep(.action-button) {
-    width: 4.5rem;
-    height: 2rem;
-    font-size: 0.55rem;
-  }
-}
 </style>
