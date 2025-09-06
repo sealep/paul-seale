@@ -147,23 +147,69 @@
 }
 
 @media (orientation: portrait) and (width >= 768px) {
-  @media (width >= 768px) {
-    .page {
-      padding: 1rem;
-      display: grid;
-      grid-template-columns: 40% 60%;
-      grid-template-areas:
-        'description description'
-        'choice-label choice-label'
-        'choice choice'
-        'object object'
-        'function function'
-        'source-label source-select'
-        'deep-label deep-select'
-        'effect-label effect-select'
-        'run-effect trigger-message';
-      align-items: center;
-    }
+  .page {
+    margin: 0 1%;
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas:
+      'choice-label choice'
+      'description object'
+      'source-label source-select'
+      'deep-label deep-select'
+      'effect-label effect-select'
+      'function function'
+      'run-effect trigger-message';
+    align-items: center;
+  }
+  .choice-label {
+    justify-self: end;
+    font-size: 1.5rem;
+  }
+  .choice-buttons {
+    list-style-type: none;
+    display: inline-flex;
+    align-items: center;
+  }
+  .choice {
+  }
+  .description {
+    font-size: 1.3rem;
+  }
+  .description p {
+    margin: 1% 0;
+  }
+  .source-label,
+  .deep-label,
+  .effect-label {
+    justify-self: end;
+
+    font-size: 1.1rem;
+  }
+  .source-select,
+  .deep-select,
+  .effect-select {
+  }
+  select {
+    width: 100%;
+    height: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: black;
+    border: solid 0.2rem var(--dark-grayish);
+    font-size: 1rem;
+  }
+  .object {
+    margin-bottom: 2%;
+  }
+  .run-effect {
+    justify-self: end;
+  }
+  .trigger-message {
+    width: fit-content;
+    animation-name: yellowfade;
+    animation-duration: 3s;
+    font-size: 1.1rem;
   }
 }
 @media (orientation: portrait) and (width < 768px) {
