@@ -132,8 +132,8 @@ function runEffect() {
 
 <template>
   <div class="page">
+    <div class="choice-label">Choose a source type:</div>
     <div class="choice">
-      <span class="choice-label">Choose a source type:</span>
       <ul>
         <li v-for="(navButton, index) in navButtons" :key="index">
           <NavButton v-bind="navButton" />
@@ -230,7 +230,7 @@ function runEffect() {
   display: grid;
   grid-template-columns: 20% 30% 50%;
   grid-template-areas:
-    'choice choice choice'
+    'choice-label choice choice'
     'description description object'
     'source-label source-select function'
     'deep-label deep-select function'
@@ -238,12 +238,36 @@ function runEffect() {
     'run-effect trigger-message .';
   align-items: center;
 }
+
+@media (orientation: portrait) {
+  .page {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-areas:
+      'choice-label choice-label'
+      'choice choice'
+      'description description'
+      'object object'
+      'function function'
+      'source-label source-select'
+      'deep-label deep-select'
+      'effect-label effect-select'
+      'run-effect trigger-message';
+    align-items: center;
+  }
+}
+
 .choice-label {
   margin-right: 1rem;
   grid-area: choice-label;
   justify-self: end;
   font-size: 1.4rem;
-  /* font-weight: bold; */
+}
+@media (orientation: portrait) {
+  .choice-label {
+    justify-self: start;
+  }
 }
 .choice {
   grid-area: choice;
@@ -319,6 +343,11 @@ function runEffect() {
   padding: 0.5rem;
   border: solid 2px var(--dark-grayish);
 }
+@media (orientation: portrait) {
+  .code {
+    font-size: 0.8rem;
+  }
+}
 label {
   font-weight: bold;
 }
@@ -334,6 +363,7 @@ select {
 }
 ul {
   display: inline-flex;
+  flex-wrap: wrap;
   gap: 1rem;
   align-items: center;
   list-style-type: none;
