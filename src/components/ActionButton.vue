@@ -15,7 +15,7 @@ const { buttonName, action } = defineProps<ActionButtonI>()
 .action-button {
   background-color: var(--steely-blue);
   color: black;
-  border: 1px solid black;
+  border: 0.15rem solid black;
   border-radius: 5%;
   box-shadow: 0 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);
 }

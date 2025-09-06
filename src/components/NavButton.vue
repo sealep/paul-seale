@@ -33,7 +33,7 @@ a {
   border-radius: 5%;
 }
 a.router-link-active {
-  border: 1px solid white;
+  border: 0.2rem solid white;
   box-shadow: 0 0 0 0.2rem var(--light-bluewood);
 }
 </style>

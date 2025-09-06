@@ -73,7 +73,7 @@
     margin: 0 1%;
     margin-top: 2%;
     display: grid;
-    grid-template-columns: 30% 35% 1fr;
+    grid-template-columns: 30% 25% 1fr;
     grid-template-areas:
       'choice-label choice choice'
       'object description description'
@@ -86,12 +86,12 @@
   .choice-label {
     justify-self: end;
     margin-right: 5%;
-    margin-bottom: 2%;
     font-size: 1.5rem;
   }
   .choice-buttons {
     list-style-type: none;
     display: inline-flex;
+    align-items: center;
     gap: 5%;
   }
   .choice {
