@@ -60,7 +60,7 @@ body {
   .nav-button {
     width: 6rem;
     height: 2rem;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
   }
 }
 .action-button {
@@ -72,7 +72,7 @@ body {
   .action-button {
     width: 6rem;
     height: 2rem;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
   }
 }
 </style>
