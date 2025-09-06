@@ -148,10 +148,10 @@
 
 @media (orientation: portrait) and (width >= 768px) {
   .page {
-    margin: 0 1%;
-    margin-top: 2%;
+    margin: 0 1.5%;
+    margin-top: 4%;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 40% 60%;
     grid-template-areas:
       'choice-label choice'
       'description object'
@@ -162,19 +162,28 @@
       'run-effect trigger-message';
     align-items: center;
   }
+  :deep(.nav-button) {
+    width: 6.5rem;
+    height: 2rem;
+    font-size: 0.8rem;
+  }
   .choice-label {
     justify-self: end;
+    margin-right: 3%;
     font-size: 1.5rem;
   }
   .choice-buttons {
     list-style-type: none;
     display: inline-flex;
     align-items: center;
+    gap: 2%;
   }
   .choice {
+    margin: 0;
   }
   .description {
     font-size: 1.3rem;
+    margin-right: 1%;
   }
   .description p {
     margin: 1% 0;
@@ -183,12 +192,13 @@
   .deep-label,
   .effect-label {
     justify-self: end;
-
+    margin-right: 1%;
     font-size: 1.1rem;
   }
   .source-select,
   .deep-select,
   .effect-select {
+    margin-top: 1%;
   }
   select {
     width: 100%;
@@ -202,8 +212,12 @@
   .object {
     margin-bottom: 2%;
   }
+  .function {
+    margin-top: 1%;
+  }
   .run-effect {
-    justify-self: end;
+    margin-top: 1%;
+    justify-self: start;
   }
   .trigger-message {
     width: fit-content;
