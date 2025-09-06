@@ -151,7 +151,7 @@
     margin: 0 1.5%;
     margin-top: 4%;
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 20% 30% 50%;
     grid-template-areas:
       'choice-label choice'
       'description object'
