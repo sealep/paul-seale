@@ -1,0 +1,287 @@
+.choice-label {
+  grid-area: choice-label;
+}
+
+.choice {
+  grid-area: choice;
+}
+
+.description {
+  grid-area: description;
+}
+
+.object {
+  grid-area: object;
+}
+
+.function {
+  grid-area: function;
+}
+
+.source-label {
+  grid-area: source-label;
+}
+
+.source-select {
+  grid-area: source-select;
+}
+
+.deep-label {
+  grid-area: deep-label;
+}
+
+.deep-select {
+  grid-area: deep-select;
+}
+
+.effect-label {
+  grid-area: effect-label;
+}
+
+.effect-select {
+  grid-area: effect-select;
+}
+
+.run-effect {
+  grid-area: run-effect;
+}
+
+.trigger-message {
+  grid-area: trigger-message;
+}
+
+.code {
+  white-space: pre;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  background-color: var(--white-old-paper);
+  padding: 1%;
+  border: solid 0.2rem var(--dark-grayish);
+}
+
+@keyframes yellowfade {
+  from {
+    background-color: yellow;
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+@media (orientation: landscape) {
+  .page {
+    margin: 0 1%;
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: 12% 40% 15% 1fr;
+    grid-template-areas:
+      'choice-label choice choice choice'
+      'description description description object'
+      'source-label source-select function function'
+      'deep-label deep-select function function'
+      'effect-label effect-select function function'
+      'run-effect trigger-message . .';
+    align-items: center;
+  }
+  .choice-label {
+    justify-self: start;
+    font-size: clamp(1rem, 1dvw, 1.5rem);
+  }
+  .choice-buttons {
+    list-style-type: none;
+    display: inline-flex;
+    gap: 2dvw;
+  }
+  .choice {
+    margin: 1% 0;
+  }
+  .description {
+    margin-right: 2%;
+    margin-bottom: 2%;
+    font-size: clamp(1rem, 1dvw, 1.5rem);
+  }
+  .source-label,
+  .deep-label,
+  .effect-label {
+    justify-self: end;
+    margin-right: 3%;
+    font-size: clamp(0.9rem, 0.9dvw, 1.5rem);
+  }
+  .source-select,
+  .deep-select,
+  .effect-select {
+    margin-right: 3%;
+  }
+  select {
+    width: 100%;
+    padding-left: 1%;
+    height: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: black;
+    border: solid 0.2rem var(--dark-grayish);
+    font-size: 1rem;
+  }
+  .object {
+    margin-bottom: 2%;
+  }
+  .run-effect {
+    justify-self: end;
+    margin: 0 5%;
+    margin-right: 2%;
+  }
+  .trigger-message {
+    width: fit-content;
+    padding-left: 1%;
+    animation-name: yellowfade;
+    animation-duration: 3s;
+    font-weight: bold;
+    font-size: clamp(1rem, 1dvw, 1.5rem);
+  }
+}
+
+@media (orientation: portrait) and (width >= 768px) {
+  @media (width >= 768px) {
+    .page {
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 40% 60%;
+      grid-template-areas:
+        'description description'
+        'choice-label choice-label'
+        'choice choice'
+        'object object'
+        'function function'
+        'source-label source-select'
+        'deep-label deep-select'
+        'effect-label effect-select'
+        'run-effect trigger-message';
+      align-items: center;
+    }
+  }
+}
+@media (orientation: portrait) and (width < 768px) {
+  .page {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      'description'
+      'choice-label'
+      'choice'
+      'object'
+      'function'
+      'source-label'
+      'source-select'
+      'deep-label'
+      'deep-select'
+      'effect-label'
+      'effect-select'
+      'run-effect'
+      'trigger-message';
+    align-items: center;
+  }
+}
+
+/*
+.choice-label {
+  margin-right: 1rem;
+  justify-self: end;
+  font-size: 1.4rem;
+}
+@media (orientation: portrait) {
+  .choice-label {
+    justify-self: start;
+    font-size: 1rem;
+  }
+}
+
+.description {
+  margin-right: 1.5rem;
+  font-size: 1.2rem;
+}
+.object {
+  margin-top: 1rem;
+}
+.source-label {
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+  justify-self: end;
+}
+.source-select {
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+}
+.deep-label {
+  margin-right: 0.5rem;
+  justify-self: end;
+}
+.deep-select {
+  margin-right: 0.5rem;
+}
+.effect-label {
+  margin-right: 0.5rem;
+  justify-self: end;
+}
+.effect-select {
+  margin-right: 0.5rem;
+}
+.function {
+  margin-top: 1rem;
+}
+.run-effect {
+  margin-right: 0.5rem;
+  justify-self: end;
+}
+@keyframes yellowfade {
+  from {
+    background-color: yellow;
+  }
+  to {
+    background-color: transparent;
+  }
+}
+.trigger-message {
+  margin-left: 0.5rem;
+  width: fit-content;
+  animation-name: yellowfade;
+  animation-duration: 3s;
+  font-weight: bold;
+}
+.code {
+  white-space: pre;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  background-color: var(--white-old-paper);
+  padding: 0.5rem;
+  border: solid 2px var(--dark-grayish);
+}
+@media (orientation: portrait) {
+  .code {
+    font-size: 0.8rem;
+  }
+}
+label {
+  font-weight: bold;
+}
+select {
+  width: 100%;
+  padding-left: 0.5rem;
+  height: 2rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  color: black;
+  border: solid 2px var(--dark-grayish);
+  font-size: 1rem;
+}
+ul {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  list-style-type: none;
+}
+p {
+  margin: 0.5rem 0;
+}
+*/
