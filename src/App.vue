@@ -58,9 +58,9 @@ body {
 }
 @media (max-width: 480px) {
   .nav-button {
-    width: 6rem;
-    height: 2rem;
-    font-size: 0.75rem;
+    width: 7rem;
+    height: 2.5rem;
+    font-size: 0.8rem;
   }
 }
 .action-button {
@@ -70,9 +70,9 @@ body {
 }
 @media (max-width: 480px) {
   .action-button {
-    width: 6rem;
-    height: 2rem;
-    font-size: 0.75rem;
+    width: 7rem;
+    height: 2.5rem;
+    font-size: 0.8rem;
   }
 }
 </style>
