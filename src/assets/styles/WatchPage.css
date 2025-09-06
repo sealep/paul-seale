@@ -73,14 +73,14 @@
     margin: 0 1%;
     margin-top: 2%;
     display: grid;
-    grid-template-columns: 25% 25% 50%;
+    grid-template-columns: 25% 25% 20% 30%;
     grid-template-areas:
-      'choice-label choice choice'
-      'object description description'
-      'source-label source-select function'
-      'deep-label deep-select function'
-      'effect-label effect-select function'
-      'run-effect trigger-message .';
+      'choice-label choice choice choice'
+      'description description description object'
+      'source-label source-select function function'
+      'deep-label deep-select function function'
+      'effect-label effect-select function function'
+      'run-effect trigger-message . .';
     align-items: center;
   }
   .choice-label {
@@ -130,7 +130,6 @@
     font-size: 1rem;
   }
   .object {
-    margin-right: 5%;
     margin-bottom: 2%;
   }
   .run-effect {
