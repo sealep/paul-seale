@@ -20,7 +20,6 @@ const { navButtons } = defineProps<NavBarI>()
 <style scoped>
 .nav-bar {
   padding: 0 1rem;
-  /* margin-bottom: 1rem; */
   height: 5rem;
   position: sticky;
   top: 0;

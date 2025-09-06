@@ -55,7 +55,7 @@
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
   background-color: var(--white-old-paper);
-  padding: 1%;
+  padding: 2%;
   border: solid 0.2rem var(--dark-grayish);
 }
 
@@ -73,10 +73,10 @@
     margin: 0 1%;
     margin-top: 2%;
     display: grid;
-    grid-template-columns: 12% 40% 15% 1fr;
+    grid-template-columns: 20% 40% 15% 1fr;
     grid-template-areas:
       'choice-label choice choice choice'
-      'description description description object'
+      'object description description description'
       'source-label source-select function function'
       'deep-label deep-select function function'
       'effect-label effect-select function function'
@@ -84,13 +84,15 @@
     align-items: center;
   }
   .choice-label {
-    justify-self: start;
-    font-size: clamp(1rem, 1dvw, 1.5rem);
+    justify-self: end;
+    margin-right: 5%;
+    margin-bottom: 2%;
+    font-size: 1.5rem;
   }
   .choice-buttons {
     list-style-type: none;
     display: inline-flex;
-    gap: 2dvw;
+    gap: 5%;
   }
   .choice {
     margin: 1% 0;
@@ -98,14 +100,17 @@
   .description {
     margin-right: 2%;
     margin-bottom: 2%;
-    font-size: clamp(1rem, 1dvw, 1.5rem);
+    font-size: 1.3rem;
+  }
+  .description p {
+    margin: 1% 0;
   }
   .source-label,
   .deep-label,
   .effect-label {
     justify-self: end;
     margin-right: 3%;
-    font-size: clamp(0.9rem, 0.9dvw, 1.5rem);
+    font-size: 1.1rem;
   }
   .source-select,
   .deep-select,
@@ -123,6 +128,7 @@
     font-size: 1rem;
   }
   .object {
+    margin-right: 5%;
     margin-bottom: 2%;
   }
   .run-effect {
@@ -132,11 +138,10 @@
   }
   .trigger-message {
     width: fit-content;
-    padding-left: 1%;
+    padding: 0 1.5%;
     animation-name: yellowfade;
     animation-duration: 3s;
-    font-weight: bold;
-    font-size: clamp(1rem, 1dvw, 1.5rem);
+    font-size: 1.1rem;
   }
 }
 
