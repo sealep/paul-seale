@@ -151,39 +151,41 @@
     margin: 0 1.5%;
     margin-top: 4%;
     display: grid;
-    grid-template-columns: 20% 30% 50%;
+    grid-template-columns: 30% 23% 47%;
     grid-template-areas:
-      'choice-label choice'
-      'description object'
-      'source-label source-select'
-      'deep-label deep-select'
-      'effect-label effect-select'
-      'function function'
-      'run-effect trigger-message';
+      'choice-label choice choice'
+      'description description object'
+      '. source-label source-select'
+      '. deep-label deep-select'
+      '. effect-label effect-select'
+      '. function function'
+      '. run-effect trigger-message';
     align-items: center;
   }
   :deep(.nav-button) {
-    width: 6.5rem;
+    width: 7.5rem;
     height: 2rem;
     font-size: 0.8rem;
   }
   .choice-label {
     justify-self: end;
-    margin-right: 3%;
+    margin-bottom: 1%;
+    margin-right: 3.2%;
     font-size: 1.5rem;
   }
   .choice-buttons {
     list-style-type: none;
     display: inline-flex;
     align-items: center;
-    gap: 2%;
+    gap: 3%;
   }
   .choice {
-    margin: 0;
+    margin: 2% 0;
   }
   .description {
     font-size: 1.3rem;
-    margin-right: 1%;
+    margin: 2% 0;
+    margin-right: 2%;
   }
   .description p {
     margin: 1% 0;
@@ -192,13 +194,14 @@
   .deep-label,
   .effect-label {
     justify-self: end;
-    margin-right: 1%;
+    margin: 1% 0;
+    margin-right: 5%;
     font-size: 1.1rem;
   }
   .source-select,
   .deep-select,
   .effect-select {
-    margin-top: 1%;
+    margin: 1% 0;
   }
   select {
     width: 100%;
@@ -216,11 +219,13 @@
     margin-top: 1%;
   }
   .run-effect {
-    margin-top: 1%;
+    margin-top: 3%;
     justify-self: start;
   }
   .trigger-message {
     width: fit-content;
+    margin-top: 2%;
+    padding: 2%;
     animation-name: yellowfade;
     animation-duration: 3s;
     font-size: 1.1rem;
