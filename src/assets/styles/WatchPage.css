@@ -73,7 +73,7 @@
     margin: 0 1%;
     margin-top: 2%;
     display: grid;
-    grid-template-columns: 30% 25% 1fr;
+    grid-template-columns: 25% 25% 50%;
     grid-template-areas:
       'choice-label choice choice'
       'object description description'
