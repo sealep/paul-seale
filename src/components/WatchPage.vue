@@ -110,7 +110,7 @@ function setUpWatcher() {
   }
   watcher = createWatcher(
     ws.value.sourceExpOptions[sourceExpOptionIndexes.value[sourceType]].exp,
-    unref(deepOptions[unref(deepOptionIndexes)[sourceType]].val),
+    deepOptions[deepOptionIndexes.value[sourceType]].val,
   )
 }
 watchEffect(() => {
