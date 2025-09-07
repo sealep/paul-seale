@@ -80,24 +80,13 @@ watchEffect(() => {
 )`
 })
 
-const effectDisplay = ref('')
-watchEffect(() => {
-  effectDisplay.value =
-    ws.value.sourceEffectOptions[
-      sourceEffectOptionIndexes.value[sourceType]
-    ].name
-})
-
 const triggerMessage = ref('')
 
 function createWatcher(
   exp: MaybeRefOrGetter<WatchSource>,
   deep: DeepValue,
 ): WatchHandle {
-  // 'sync' required as 'r.value =...' will update 'ws' which triggers
-  // 'setUpWatcher' which stops the watcher before it executes the effect
-  // of 'r.value ...'
-  const options: WatchOptions = { deep, flush: 'pre' }
+  const options: WatchOptions = { deep }
   const effect =
     ws.value.sourceEffectOptions[sourceEffectOptionIndexes.value[sourceType]]
       .name
@@ -121,7 +110,7 @@ function setUpWatcher() {
   }
   watcher = createWatcher(
     ws.value.sourceExpOptions[sourceExpOptionIndexes.value[sourceType]].exp,
-    deepOptions[deepOptionIndexes.value[sourceType]].value,
+    unref(deepOptions[unref(deepOptionIndexes)[sourceType]].val),
   )
 }
 watchEffect(() => {
