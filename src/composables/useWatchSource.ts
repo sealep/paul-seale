@@ -4,7 +4,6 @@ import {
   ref,
   shallowReactive,
   shallowRef,
-  watch,
   type Reactive,
   type Ref,
   type ShallowReactive,
@@ -37,7 +36,7 @@ type WatchSource = object | (() => object | number)
 
 type ExpOption = {
   name: string
-  exp: WatchSource
+  exp: () => WatchSource
 }
 
 type EffectOption = { name: string; effect: () => void }
@@ -53,26 +52,6 @@ function newRawObj() {
 }
 
 const r: Ref<RawSource> = ref(newRawObj())
-// This is necessary because 'r.value = ...' is possible
-const rSourceExps = [
-  { name: `r.value`, exp: r.value },
-  { name: `r.value.o2`, exp: r.value.o2 },
-  { name: `r.value.o2.a`, exp: r.value.o2.a },
-  {
-    name: `r.value.o2.a[1]`,
-    exp: r.value.o2.a[1],
-  },
-]
-watch(
-  () => r.value,
-  () => {
-    rSourceExps[0].exp = r.value
-    rSourceExps[1].exp = r.value.o2
-    rSourceExps[2].exp = r.value.o2.a
-    rSourceExps[3].exp = r.value.o2.a[1]
-  },
-)
-
 const sr: ShallowRef<RawSource> = shallowRef(newRawObj())
 const ro: Reactive<RawSource> = reactive(newRawObj())
 const sro: ShallowReactive<RawSource> = shallowReactive(newRawObj())
@@ -128,26 +107,43 @@ function getRefExpOptions(
   isShallow: boolean,
   sourceName: string,
 ): ExpOption[] {
+  const notForShallow = isShallow
+    ? []
+    : [
+        { name: `r.value`, exp: () => r.value },
+        { name: `r.value.o2`, exp: () => r.value.o2 },
+        { name: `r.value.o2.a`, exp: () => r.value.o2.a },
+        {
+          name: `r.value.o2.a[1]`,
+          exp: () => r.value.o2.a[1],
+        },
+      ]
   return [
-    { name: sourceName, exp: source },
-    ...(isShallow ? [] : rSourceExps),
-    { name: `( ) => ${sourceName}`, exp: () => source },
-    { name: `( ) => ${sourceName}.value`, exp: () => source.value },
-    { name: `( ) => ${sourceName}.value.n`, exp: () => source.value.n },
-    { name: `( ) => ${sourceName}.value.o2`, exp: () => source.value.o2 },
-    { name: `( ) => ${sourceName}.value.o2.n2`, exp: () => source.value.o2.n2 },
-    { name: `( ) => ${sourceName}.value.o2.a`, exp: () => source.value.o2.a },
+    { name: sourceName, exp: () => source },
+    ...notForShallow,
+    { name: `( ) => ${sourceName}`, exp: () => () => source },
+    { name: `( ) => ${sourceName}.value`, exp: () => () => source.value },
+    { name: `( ) => ${sourceName}.value.n`, exp: () => () => source.value.n },
+    { name: `( ) => ${sourceName}.value.o2`, exp: () => () => source.value.o2 },
+    {
+      name: `( ) => ${sourceName}.value.o2.n2`,
+      exp: () => () => source.value.o2.n2,
+    },
+    {
+      name: `( ) => ${sourceName}.value.o2.a`,
+      exp: () => () => source.value.o2.a,
+    },
     {
       name: `( ) => ${sourceName}.value.o2.a[0]`,
-      exp: () => source.value.o2.a[0],
+      exp: () => () => source.value.o2.a[0],
     },
     {
       name: `( ) => ${sourceName}.value.o2.a[1]`,
-      exp: () => source.value.o2.a[1],
+      exp: () => () => source.value.o2.a[1],
     },
     {
       name: `( ) => ${sourceName}.value.o2.a[1].n3`,
-      exp: () => source.value.o2.a[1].n3,
+      exp: () => () => source.value.o2.a[1].n3,
     },
   ]
 }
@@ -160,32 +156,32 @@ function getReactiveExpOptions(
   const notForShallow = isShallow
     ? []
     : [
-        { name: `${sourceName}.o2`, exp: source.o2 },
-        { name: `${sourceName}.o2.a`, exp: source.o2.a },
+        { name: `${sourceName}.o2`, exp: () => source.o2 },
+        { name: `${sourceName}.o2.a`, exp: () => source.o2.a },
         {
           name: `${sourceName}.o2.a[1]`,
-          exp: source.o2.a[1],
+          exp: () => source.o2.a[1],
         },
       ]
   return [
-    { name: sourceName, exp: source },
+    { name: sourceName, exp: () => source },
     ...notForShallow,
-    { name: `( ) => ${sourceName}`, exp: () => source },
-    { name: `( ) => ${sourceName}.n`, exp: () => source.n },
-    { name: `( ) => ${sourceName}.o2`, exp: () => source.o2 },
-    { name: `( ) => ${sourceName}.o2.n2`, exp: () => source.o2.n2 },
-    { name: `( ) => ${sourceName}.o2.a`, exp: () => source.o2.a },
+    { name: `( ) => ${sourceName}`, exp: () => () => source },
+    { name: `( ) => ${sourceName}.n`, exp: () => () => source.n },
+    { name: `( ) => ${sourceName}.o2`, exp: () => () => source.o2 },
+    { name: `( ) => ${sourceName}.o2.n2`, exp: () => () => source.o2.n2 },
+    { name: `( ) => ${sourceName}.o2.a`, exp: () => () => source.o2.a },
     {
       name: `( ) => ${sourceName}.o2.a[0]`,
-      exp: () => source.o2.a[0],
+      exp: () => () => source.o2.a[0],
     },
     {
       name: `( ) => ${sourceName}.o2.a[1]`,
-      exp: () => source.o2.a[1],
+      exp: () => () => source.o2.a[1],
     },
     {
       name: `( ) => ${sourceName}.o2.a[1].n3`,
-      exp: () => source.o2.a[1].n3,
+      exp: () => () => source.o2.a[1].n3,
     },
   ]
 }

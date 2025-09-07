@@ -8,9 +8,11 @@ import useWatchSource, {
 import {
   computed,
   ref,
+  toValue,
   unref,
   watch,
   watchEffect,
+  type MaybeRefOrGetter,
   type WatchHandle,
   type WatchOptions,
 } from 'vue'
@@ -88,7 +90,10 @@ watchEffect(() => {
 
 const triggerMessage = ref('')
 
-function createWatcher(exp: WatchSource, deep: DeepValue): WatchHandle {
+function createWatcher(
+  exp: MaybeRefOrGetter<WatchSource>,
+  deep: DeepValue,
+): WatchHandle {
   // 'sync' required as 'r.value =...' will update 'ws' which triggers
   // 'setUpWatcher' which stops the watcher before it executes the effect
   // of 'r.value ...'
@@ -97,7 +102,7 @@ function createWatcher(exp: WatchSource, deep: DeepValue): WatchHandle {
     ws.value.sourceEffectOptions[sourceEffectOptionIndexes.value[sourceType]]
       .name
   return watch(
-    exp,
+    toValue(exp),
     () => {
       triggerMessage.value = `${effect}`
       setTimeout(() => {
