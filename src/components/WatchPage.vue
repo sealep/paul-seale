@@ -72,7 +72,7 @@ watchEffect(() => {
   functionDisplay.value = `watch(
   ${ws.value.sourceExpOptions[sourceExpOptionIndexes.value[sourceType]].name},
   ( ) => {
-    flash('${effect} triggered watcher!')
+    flash('${effect}')
   },
   ${deep}
 )`
@@ -99,7 +99,7 @@ function createWatcher(exp: WatchSource, deep: DeepValue): WatchHandle {
   return watch(
     exp,
     () => {
-      triggerMessage.value = `${effect} triggered watcher!`
+      triggerMessage.value = `${effect}`
       setTimeout(() => {
         triggerMessage.value = ''
       }, 3000)

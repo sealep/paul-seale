@@ -170,10 +170,11 @@
   .choice-label {
     justify-self: end;
     margin-bottom: 1%;
-    margin-right: 3.2%;
+    margin-right: 3.3%;
     font-size: 1.5rem;
   }
   .choice-buttons {
+    margin-left: 1%;
     list-style-type: none;
     display: inline-flex;
     align-items: center;
@@ -233,24 +234,179 @@
 }
 @media (orientation: portrait) and (width < 768px) {
   .page {
-    padding: 1rem;
+    margin: 0 1.5%;
+    margin-top: 4%;
     display: grid;
-    grid-template-columns: 100%;
+    grid-template-columns: 35% 65%;
     grid-template-areas:
-      'description'
-      'choice-label'
-      'choice'
-      'object'
-      'function'
-      'source-label'
-      'source-select'
-      'deep-label'
-      'deep-select'
-      'effect-label'
-      'effect-select'
-      'run-effect'
-      'trigger-message';
+      'description description'
+      'choice-label choice-label'
+      'choice choice'
+      'object object'
+      'source-label source-label'
+      'source-select source-select'
+      'deep-label deep-label'
+      'deep-select deep-select'
+      'effect-label effect-label'
+      'effect-select effect-select'
+      'function function'
+      'run-effect trigger-message';
     align-items: center;
+  }
+  .description {
+    margin: 2%;
+    font-size: 0.9rem;
+  }
+  .description p {
+    margin: 1% 0;
+  }
+  :deep(.nav-button) {
+    width: 5rem;
+    height: 2rem;
+    font-size: 0.6rem;
+  }
+  .choice-label {
+    margin-left: 1.5%;
+    margin-bottom: 1%;
+    font-size: 1.5rem;
+  }
+  .choice {
+    margin-left: 1.5%;
+  }
+  .choice-buttons {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 3%;
+  }
+  .object {
+    margin: 2% 0;
+  }
+  .source-label,
+  .deep-label,
+  .effect-label {
+    justify-self: start;
+    margin-bottom: 0.5%;
+    font-size: 0.65rem;
+  }
+  .source-select,
+  .deep-select,
+  .effect-select {
+    margin-bottom: 1%;
+  }
+  select {
+    width: 100%;
+    padding-left: 1%;
+    height: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: black;
+    border: solid 0.2rem var(--dark-grayish);
+    font-size: 1rem;
+  }
+  .function {
+    margin-top: 1%;
+  }
+  .run-effect {
+    padding: 1rem 0;
+    margin-bottom: 5rem;
+  }
+  .trigger-message {
+    margin-bottom: 5rem;
+    padding: 0.5rem;
+    padding-left: 3%;
+    width: fit-content;
+    animation-name: yellowfade;
+    animation-duration: 3s;
+    font-size: 0.7rem;
+  }
+}
+
+@media (orientation: portrait) and (width >= 768px) {
+  .page {
+    margin: 0 1.5%;
+    margin-top: 4%;
+    display: grid;
+    grid-template-columns: 30% 23% 47%;
+    grid-template-areas:
+      'choice-label choice choice'
+      'description description object'
+      '. source-label source-select'
+      '. deep-label deep-select'
+      '. effect-label effect-select'
+      '. function function'
+      '. run-effect trigger-message';
+    align-items: center;
+  }
+  :deep(.nav-button) {
+    width: 7.5rem;
+    height: 2rem;
+    font-size: 0.8rem;
+  }
+  .choice-label {
+    justify-self: end;
+    margin-bottom: 1%;
+    margin-right: 3.3%;
+    font-size: 1.5rem;
+  }
+  .choice-buttons {
+    margin-left: 1%;
+    list-style-type: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 3%;
+  }
+  .choice {
+    margin: 2% 0;
+  }
+  .description {
+    font-size: 1.3rem;
+    margin: 2% 0;
+    margin-right: 2%;
+  }
+  .description p {
+    margin: 1% 0;
+  }
+  .source-label,
+  .deep-label,
+  .effect-label {
+    justify-self: end;
+    margin: 1% 0;
+    margin-right: 5%;
+    font-size: 1.1rem;
+  }
+  .source-select,
+  .deep-select,
+  .effect-select {
+    margin: 1% 0;
+  }
+  select {
+    width: 100%;
+    height: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: black;
+    border: solid 0.2rem var(--dark-grayish);
+    font-size: 1rem;
+  }
+  .object {
+    margin-bottom: 2%;
+  }
+  .function {
+    margin-top: 1%;
+  }
+  .run-effect {
+    margin-top: 3%;
+    justify-self: start;
+  }
+  .trigger-message {
+    width: fit-content;
+    margin-top: 2%;
+    padding: 2%;
+    animation-name: yellowfade;
+    animation-duration: 3s;
+    font-size: 1.1rem;
   }
 }
 

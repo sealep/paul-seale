@@ -29,10 +29,21 @@ const { navButtons } = defineProps<NavBarI>()
   align-items: center;
   gap: 1rem;
 }
-@media (orientation: portrait) {
+@media (orientation: portrait) and (width >= 768px) {
   .nav-bar {
     padding: 0 0.5rem;
     justify-content: space-evenly;
+  }
+}
+@media (orientation: portrait) and (width < 768px) {
+  .nav-bar {
+    padding: 0 0.5rem;
+    justify-content: space-evenly;
+  }
+  :deep(.nav-button) {
+    width: 6rem;
+    height: 2rem;
+    font-size: 0.8rem;
   }
 }
 </style>
