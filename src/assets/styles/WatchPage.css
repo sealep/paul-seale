@@ -177,7 +177,9 @@ code {
   #trigger-message {
     align-self: center;
     width: fit-content;
-    padding: 0 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    padding: 0 0.5rem;
     animation-name: yellowfade;
     animation-duration: 3s;
   }

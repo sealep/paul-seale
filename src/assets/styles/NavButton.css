@@ -1,0 +1,18 @@
+.nav-button {
+  background-color: var(--vue-pickled-bluewood);
+  color: white;
+  border: none;
+}
+
+.nav-button:hover {
+  transform: scale(1.01);
+}
+
+a {
+  display: block;
+  border-radius: 0.5rem;
+}
+
+a.router-link-active {
+  border: 0.2rem solid white;
+}

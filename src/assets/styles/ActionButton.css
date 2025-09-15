@@ -1,0 +1,19 @@
+.action-button {
+  background-color: var(--steely-blue);
+  color: black;
+  border: 0.1rem solid black;
+  box-shadow: 0 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);
+}
+
+.action-button:disabled {
+  background-color: var(--disabled-gray-light);
+  color: var(--disabled-gray-dark);
+}
+
+.action-button:hover {
+  transform: scale(1.01);
+}
+
+.action-button:active {
+  transform: scale(1.05);
+}
