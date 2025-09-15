@@ -26,4 +26,7 @@ const { buttonName, action } = defineProps<ActionButtonI>()
 .action-button:hover {
   transform: scale(1.01);
 }
+.action-button:active {
+  transform: scale(1.05);
+}
 </style>

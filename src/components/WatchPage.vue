@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import ActionButton from '@/components/ActionButton.vue'
 import useDeep, { type DeepValue } from '@/composables/useDeep'
-import useWatchSource, {
-  SourceType,
-  type WatchSource,
-} from '@/composables/useWatchSource'
+import useWatchSource, { SourceType, type WatchSource } from '@/composables/useWatchSource'
 import {
   computed,
   ref,
@@ -16,37 +13,6 @@ import {
   type WatchHandle,
   type WatchOptions,
 } from 'vue'
-import type { NavButtonI } from './NavButton.vue'
-import NavButton from './NavButton.vue'
-
-const navButtons: NavButtonI[] = [
-  {
-    buttonName: 'Ref',
-    linkName: 'WatchPageWithParam',
-    params: { sourceType: `${SourceType.REF}` },
-  },
-  {
-    buttonName: 'ShallowRef',
-    linkName: 'WatchPageWithParam',
-    params: { sourceType: `${SourceType.SHALLOW_REF}` },
-  },
-
-  {
-    buttonName: 'Reactive',
-    linkName: 'WatchPageWithParam',
-    params: { sourceType: `${SourceType.REACTIVE}` },
-  },
-
-  {
-    buttonName: 'ShallowReactive',
-    linkName: 'WatchPageWithParam',
-    params: { sourceType: `${SourceType.SHALLOW_REACTIVE}` },
-  },
-]
-
-const { sourceType } = defineProps<{
-  sourceType: SourceType
-}>()
 
 const watchSources = [
   useWatchSource(SourceType.REF),
@@ -54,7 +20,8 @@ const watchSources = [
   useWatchSource(SourceType.REACTIVE),
   useWatchSource(SourceType.SHALLOW_REACTIVE),
 ]
-const ws = computed(() => watchSources[sourceType])
+const sourceType = ref(SourceType.REF)
+const ws = computed(() => watchSources[sourceType.value])
 
 const sourceExpOptionIndexes = ref([0, 0, 0, 0])
 const sourceEffectOptionIndexes = ref([0, 0, 0, 0])
@@ -65,14 +32,13 @@ const deepOptionIndexes = ref([0, 0, 0, 0])
 const functionDisplay = ref('')
 watchEffect(() => {
   const deep =
-    deepOptions[deepOptionIndexes.value[sourceType]].name === 'default'
+    deepOptions[deepOptionIndexes.value[sourceType.value]].name === 'default'
       ? '{ }'
-      : `{ deep: ${deepOptions[deepOptionIndexes.value[sourceType]].name} }`
+      : `{ deep: ${deepOptions[deepOptionIndexes.value[sourceType.value]].name} }`
   const effect =
-    ws.value.sourceEffectOptions[sourceEffectOptionIndexes.value[sourceType]]
-      .name
+    ws.value.sourceEffectOptions[sourceEffectOptionIndexes.value[sourceType.value]].name
   functionDisplay.value = `watch(
-  ${ws.value.sourceExpOptions[sourceExpOptionIndexes.value[sourceType]].name},
+  ${ws.value.sourceExpOptions[sourceExpOptionIndexes.value[sourceType.value]].name},
   ( ) => {
     flash('${effect}')
   },
@@ -82,14 +48,10 @@ watchEffect(() => {
 
 const triggerMessage = ref('')
 
-function createWatcher(
-  exp: MaybeRefOrGetter<WatchSource>,
-  deep: DeepValue,
-): WatchHandle {
+function createWatcher(exp: MaybeRefOrGetter<WatchSource>, deep: DeepValue): WatchHandle {
   const options: WatchOptions = { deep }
   const effect =
-    ws.value.sourceEffectOptions[sourceEffectOptionIndexes.value[sourceType]]
-      .name
+    ws.value.sourceEffectOptions[sourceEffectOptionIndexes.value[sourceType.value]].name
   return watch(
     toValue(exp),
     () => {
@@ -109,8 +71,8 @@ function setUpWatcher() {
     watcher.stop()
   }
   watcher = createWatcher(
-    ws.value.sourceExpOptions[sourceExpOptionIndexes.value[sourceType]].exp,
-    deepOptions[deepOptionIndexes.value[sourceType]].val,
+    ws.value.sourceExpOptions[sourceExpOptionIndexes.value[sourceType.value]].exp,
+    deepOptions[deepOptionIndexes.value[sourceType.value]].val,
   )
 }
 watchEffect(() => {
@@ -118,84 +80,103 @@ watchEffect(() => {
 })
 
 function runEffect() {
-  ws.value.sourceEffectOptions[
-    sourceEffectOptionIndexes.value[sourceType]
-  ].effect()
+  ws.value.sourceEffectOptions[sourceEffectOptionIndexes.value[sourceType.value]].effect()
 }
 </script>
 
 <template>
-  <div class="page">
-    <div class="choice-label">Choose a source type:</div>
-    <div class="choice">
-      <ul class="choice-buttons">
-        <li v-for="(navButton, index) in navButtons" :key="index">
-          <NavButton v-bind="navButton" />
-        </li>
-      </ul>
-    </div>
-    <div class="description">
+  <section id="watch-page">
+    <fieldset id="source-choice">
+      <legend id="choice-legend">Choose a source type:</legend>
+
+      <label id="ref-label" for="ref-radio">
+        <input
+          id="ref-radio"
+          type="radio"
+          name="source-choice"
+          :value="SourceType.REF"
+          v-model="sourceType"
+        />
+        Ref
+      </label>
+
+      <label id="sref-label" for="sref-radio">
+        <input
+          id="sref-radio"
+          type="radio"
+          name="source-choice"
+          :value="SourceType.SHALLOW_REF"
+          v-model="sourceType"
+        />
+        Shallow Ref
+      </label>
+
+      <label id="reactive-label" for="reactive-radio">
+        <input
+          id="reactive-radio"
+          type="radio"
+          name="source-choice"
+          :value="SourceType.REACTIVE"
+          v-model="sourceType"
+        />
+        Reactive
+      </label>
+
+      <label id="sreactive-label" for="sreactive-radio">
+        <input
+          id="sreactive-radio"
+          type="radio"
+          name="source-choice"
+          :value="SourceType.SHALLOW_REACTIVE"
+          v-model="sourceType"
+        />
+        Shallow Reactive
+      </label>
+    </fieldset>
+
+    <article id="watch-desc">
       <p>
-        This demonstrates the <em>watch</em> function from the Vue Composition
-        API. You can observe the behavior of the function when varying the
-        source expression to be watched, the 'deep' option, and the effect to
-        attempt to trigger the watcher.
+        This demonstrates the
+        <em>watch</em>
+        function from the Vue Composition API. You can observe the behavior of the function when
+        varying the source expression to be watched, the 'deep' option, and the effect to attempt to
+        trigger the watcher.
       </p>
       <p>
-        Note the difference in behavior when the source expression is an object
-        versus when it is a getter, as well as the lack of reactivity among the
-        shallow versions of the source types.
+        Note the difference in behavior when the source expression is an object versus when it is a
+        getter, as well as the lack of reactivity among the shallow versions of the source types.
       </p>
-    </div>
-    <div class="code object">
+    </article>
+
+    <code id="watch-object">
       {{
         `const ${ws.sourceName} = ${ws.sourceFunction}(` +
         JSON.stringify(unref(ws.source), null, 2).replace(/\"/g, '') +
         ')'
       }}
-    </div>
-    <div class="code function">
+    </code>
+
+    <code id="watch-function">
       {{ functionDisplay }}
-    </div>
-    <div class="source-label">
-      <label for="selectSourceExp">Select watch source:</label>
-    </div>
-    <div class="source-select">
-      <select
-        id="selectSourceExp"
-        v-model.number="sourceExpOptionIndexes[sourceType]"
-      >
-        <option
-          v-for="(sourceExpOption, index) in ws.sourceExpOptions"
-          :key="index"
-          :value="index"
-        >
+    </code>
+
+    <fieldset id="function-options">
+      <label id="source-label" for="source-select">Select watch source:</label>
+      <select id="source-select" v-model.number="sourceExpOptionIndexes[sourceType]">
+        <option v-for="(sourceExpOption, index) in ws.sourceExpOptions" :key="index" :value="index">
           {{ sourceExpOption.name }}
         </option>
       </select>
-    </div>
-    <div class="deep-label">
-      <label for="selectDeep">Select deep option:</label>
-    </div>
-    <div class="deep-select">
-      <select id="selectDeep" v-model.number="deepOptionIndexes[sourceType]">
-        <option
-          v-for="(deepOption, index) in deepOptions"
-          :key="index"
-          :value="index"
-        >
+
+      <label id="deep-label" for="deep-select">Select deep option:</label>
+      <select id="deep-select" v-model.number="deepOptionIndexes[sourceType]">
+        <option v-for="(deepOption, index) in deepOptions" :key="index" :value="index">
           {{ deepOption.name }}
         </option>
       </select>
-    </div>
-    <div class="effect-label">
-      <label for="selectSourceEffect">Select effect to run:</label>
-    </div>
-    <div class="effect-select">
-      <select
-        id="selectSourceEffect"
-        v-model.number="sourceEffectOptionIndexes[sourceType]"
-      >
+
+      <label id="effect-label" for="effect-select">Select effect to run:</label>
+      <select id="effect-select" v-model.number="sourceEffectOptionIndexes[sourceType]">
         <option
           v-for="(sourceEffectOption, index) in ws.sourceEffectOptions"
           :key="index"
@@ -204,18 +185,18 @@ function runEffect() {
           {{ sourceEffectOption.name }}
         </option>
       </select>
-    </div>
-    <div class="run-effect">
+    </fieldset>
+
+    <section id="run-effect">
       <ActionButton
+        id="effect-button"
         :disabled="!!triggerMessage"
         :buttonName="'Run Effect'"
         :action="runEffect"
       />
-    </div>
-    <div class="trigger-message" v-show="triggerMessage">
-      {{ triggerMessage }}
-    </div>
-  </div>
+      <p id="trigger-message" v-show="triggerMessage">{{ triggerMessage }}</p>
+    </section>
+  </section>
 </template>
 
 <style src="@/assets/styles/WatchPage.css" scoped></style>
