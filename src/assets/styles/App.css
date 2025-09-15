@@ -38,20 +38,7 @@ button {
 }
 @media (width <= 480px) {
   button {
-    width: 7rem;
-    height: 2.5rem;
-    font-size: 0.8rem;
-  }
-}
-
-button {
-  width: 9rem;
-  height: 2.5rem;
-  font-size: 1rem;
-}
-@media (width <= 480px) {
-  button {
-    width: 7rem;
+    width: 5rem;
     height: 2.5rem;
     font-size: 0.8rem;
   }

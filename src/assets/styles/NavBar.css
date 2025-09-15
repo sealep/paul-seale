@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  z-index: 100; /* higher than resume page */
 }
 @media (orientation: portrait) and (width >= 768px) {
   .nav-bar {
