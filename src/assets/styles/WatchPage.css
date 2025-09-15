@@ -94,8 +94,7 @@ code {
     display: grid;
     grid-template-columns: 25% 25% 20% 1fr;
     grid-template-areas:
-      'source-choice source-choice source-choice .'
-      'watch-desc watch-desc watch-desc watch-object'
+      'watch-desc watch-desc source-choice watch-object'
       'function-options function-options watch-function watch-function'
       'function-options function-options watch-function watch-function'
       'function-options function-options watch-function watch-function'
@@ -104,22 +103,27 @@ code {
 
   #source-choice {
     border: 0.1rem solid var(--dark-grayish);
+    align-self: center;
+    margin-right: 0.5rem;
     display: grid;
     align-items: center;
-    grid-template-columns: 5% 1fr 5% 1f 5% 1f 5% 1fr;
-    grid-template-areas: '. ref-label . sref-label . reactive-label . sreactive-label';
+    grid-template-columns: 100%;
+    grid-template-areas: 'ref-label' 'sref-label' 'reactive-label' 'sreactive-label';
   }
 
   #choice-legend {
     font-size: 1.2rem;
+    margin: 0 0.5rem;
+    padding: 0 0.2rem;
   }
 
   #source-choice > label {
-    margin-bottom: 0.5rem;
+    margin: 0.5rem;
   }
 
   #watch-desc {
     align-self: center;
+    margin-right: 1rem;
     font-size: 1.2rem;
   }
 
