@@ -85,12 +85,7 @@ $laptop-height: calc($screen-height + $keyboard-height);
     linear-gradient(to bottom, #777 1em, transparent),
     linear-gradient(to bottom, #777 1em, transparent),
     linear-gradient(to bottom, #777 1em, transparent),
-    linear-gradient(
-      to right,
-      #777 0.5em,
-      transparent 0.5em 17.5em,
-      #777 17.5em
-    ),
+    linear-gradient(to right, #777 0.5em, transparent 0.5em 17.5em, #777 17.5em),
     linear-gradient(to top, #777 1em, transparent 1em 10em, #777 10em);
   background-size:
     6em 24em,
@@ -111,8 +106,7 @@ $laptop-height: calc($screen-height + $keyboard-height);
     center 27em,
     center bottom;
   background-repeat:
-    repeat-x, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
-    no-repeat;
+    repeat-x, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
 }
 
 .front {
