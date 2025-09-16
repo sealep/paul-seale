@@ -69,7 +69,13 @@ window.onload = function () {
                 programming languages and environments. Exceptional ability to write efficient,
                 well-designed and documented solutions to complex and interesting problems.
                 Interacts well with others by keeping things light and maintaining perspective.
-                Seeking a role as a full-stack or front-end web developer.
+              </p>
+            </section>
+            <section>
+              <h2>Objective</h2>
+              <p>
+                Seeking a challenging full-stack or front-end web developer role. Experienced in
+                Vue, Angular, TypeScript, and CSS.
               </p>
             </section>
             <section>
@@ -97,7 +103,7 @@ window.onload = function () {
                   <li>Developed with TypeScript, CSS, RxJS, Angular Material, Node.js</li>
                   <li>REST endpoint development with Express.js and Fastify</li>
                   <li>Migrated web server backend from Oracle to SQL Server</li>
-                  <li>Developed Oracle and SQL Server tables, queries, ands stored procedures</li>
+                  <li>Developed Oracle and SQL Server tables, queries, and stored procedures</li>
                   <li>Unix shell scripting and C/C++ development</li>
                   <li>Experience as an Agile team member</li>
                   <li>Experience with DevOps tools: Jira, Git, Bitbucket, Confluence, Jenkins</li>

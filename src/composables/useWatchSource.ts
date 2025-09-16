@@ -51,21 +51,16 @@ function newRawObj() {
   return o
 }
 
-const r: Ref<RawSource> = ref(newRawObj())
-const sr: ShallowRef<RawSource> = shallowRef(newRawObj())
-const ro: Reactive<RawSource> = reactive(newRawObj())
-const sro: ShallowReactive<RawSource> = shallowReactive(newRawObj())
-
 function getSource(sourceType: SourceType): Source {
   switch (sourceType) {
     case SourceType.REF:
-      return r
+      return ref(newRawObj())
     case SourceType.SHALLOW_REF:
-      return sr
+      return shallowRef(newRawObj())
     case SourceType.REACTIVE:
-      return ro
+      return reactive(newRawObj())
     case SourceType.SHALLOW_REACTIVE:
-      return sro
+      return shallowReactive(newRawObj())
   }
 }
 
@@ -96,10 +91,7 @@ function getSourceFunction(sourceType: SourceType) {
 }
 
 function isShallow(sourceType: SourceType) {
-  return (
-    sourceType === SourceType.SHALLOW_REACTIVE ||
-    sourceType === SourceType.SHALLOW_REF
-  )
+  return sourceType === SourceType.SHALLOW_REACTIVE || sourceType === SourceType.SHALLOW_REF
 }
 
 function getRefExpOptions(
@@ -110,12 +102,12 @@ function getRefExpOptions(
   const notForShallow = isShallow
     ? []
     : [
-        { name: `r.value`, exp: () => r.value },
-        { name: `r.value.o2`, exp: () => r.value.o2 },
-        { name: `r.value.o2.a`, exp: () => r.value.o2.a },
+        { name: `${sourceName}.value`, exp: () => source.value },
+        { name: `${sourceName}.value.o2`, exp: () => source.value.o2 },
+        { name: `${sourceName}.value.o2.a`, exp: () => source.value.o2.a },
         {
-          name: `r.value.o2.a[1]`,
-          exp: () => r.value.o2.a[1],
+          name: `${sourceName}.value.o2.a[1]`,
+          exp: () => source.value.o2.a[1],
         },
       ]
   return [
@@ -186,11 +178,7 @@ function getReactiveExpOptions(
   ]
 }
 
-function getSourceExpOptions(
-  source: Source,
-  sourceType: SourceType,
-  sourceName: string,
-) {
+function getSourceExpOptions(source: Source, sourceType: SourceType, sourceName: string) {
   if (isRef(source)) {
     return getRefExpOptions(source, isShallow(sourceType), sourceName)
   } else {
@@ -200,12 +188,11 @@ function getSourceExpOptions(
 
 function getRefEffectOptions(
   source: Ref<RawSource> | ShallowRef<RawSource>,
-  isShallow: boolean,
   sourceName: string,
 ): EffectOption[] {
   return [
     {
-      name: `${sourceName}.value = { n:0, ...}`,
+      name: `${sourceName}.value = { n:0, ... }`,
       effect: () => (source.value = newRawObj()),
     },
     {
@@ -229,7 +216,6 @@ function getRefEffectOptions(
 
 function getReactiveEffectOptions(
   source: Reactive<RawSource> | ShallowReactive<RawSource>,
-  isShallow: boolean,
   sourceName: string,
 ): EffectOption[] {
   return [
@@ -252,15 +238,11 @@ function getReactiveEffectOptions(
   ]
 }
 
-function getSourceEffectOptions(
-  source: Source,
-  sourceType: SourceType,
-  sourceName: string,
-) {
+function getSourceEffectOptions(source: Source, sourceName: string) {
   if (isRef(source)) {
-    return getRefEffectOptions(source, isShallow(sourceType), sourceName)
+    return getRefEffectOptions(source, sourceName)
   } else {
-    return getReactiveEffectOptions(source, isShallow(sourceType), sourceName)
+    return getReactiveEffectOptions(source, sourceName)
   }
 }
 
@@ -269,12 +251,7 @@ export default function useWatchSource(sourceType: SourceType) {
   const sourceName = getSourceName(sourceType)
   const sourceFunction = getSourceFunction(sourceType)
   const sourceExpOptions = getSourceExpOptions(source, sourceType, sourceName)
-
-  const sourceEffectOptions = getSourceEffectOptions(
-    source,
-    sourceType,
-    sourceName,
-  )
+  const sourceEffectOptions = getSourceEffectOptions(source, sourceName)
   return {
     source,
     sourceName,
@@ -284,10 +261,4 @@ export default function useWatchSource(sourceType: SourceType) {
   }
 }
 
-export {
-  SourceType,
-  type Source,
-  type WatchSource,
-  type ExpOption,
-  type EffectOption,
-}
+export { SourceType, type Source, type WatchSource, type ExpOption, type EffectOption }

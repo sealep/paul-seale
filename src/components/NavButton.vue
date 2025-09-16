@@ -12,7 +12,7 @@ const { buttonName, linkName } = defineProps<NavButtonI>()
 <template>
   <div>
     <RouterLink :to="{ name: linkName }">
-      <button tabindex="-1" class="nav-button">{{ buttonName }}</button>
+      <button tabindex="-1">{{ buttonName }}</button>
     </RouterLink>
   </div>
 </template>

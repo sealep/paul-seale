@@ -21,7 +21,7 @@ const navButtons: NavButtonI[] = [
 
 <template>
   <NavBar :navButtons="navButtons" />
-  <RouterView :class="'router-view'" />
+  <RouterView />
 </template>
 
 <style src="@/assets/styles/App.css"></style>

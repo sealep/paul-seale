@@ -1,12 +1,13 @@
 header {
-  width: 60%;
+  width: 80%;
   margin: 2rem auto;
   text-align: center;
 }
 
 main {
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
+  padding-bottom: 2rem;
 }
 
 h1 {
@@ -23,7 +24,7 @@ p {
     font-size: 2rem;
   }
   h2 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
   main {
     font-size: 1rem;

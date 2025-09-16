@@ -1,10 +1,10 @@
-.nav-button {
+button {
   background-color: var(--vue-pickled-bluewood);
   color: white;
   border: none;
 }
 
-.nav-button:hover {
+button:hover {
   transform: scale(1.01);
 }
 
