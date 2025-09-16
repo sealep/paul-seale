@@ -59,23 +59,17 @@ window.onload = function () {
             <header>
               <h1>
                 <span>Paul Seale,&nbsp;</span>
-                <span>Software Developer</span>
+                <span>Software Engineer</span>
               </h1>
             </header>
             <section>
               <h2>About</h2>
               <p>
-                Software developer with over 20 years of experience. Attention to detail and quality
-                while keeping things simple. Passionate about learning new technologies and skills.
+                Accomplished software engineer with 25 years of experience using a wide variety of
+                programming languages and environments. Exceptional ability to write efficient,
+                well-designed and documented solutions to complex and interesting problems.
                 Interacts well with others by keeping things light and maintaining perspective.
-              </p>
-            </section>
-            <section>
-              <h2>Objective</h2>
-              <p>
-                To use and expand my knowledge of browser technologies in the role of front-end web
-                developer. Interests include CSS, Typescript, HTML5, frameworks, cross-browser
-                compatibility, web accessibility, and responsive design.
+                Seeking a role as a full-stack or front-end web developer.
               </p>
             </section>
             <section>
@@ -85,9 +79,8 @@ window.onload = function () {
             <section>
               <h2>Contact</h2>
               <p>
-                <a class="link" href="https://linkedin.com/in/paul-seale" target="_blank">
+                <a class="link" href="https://linkedin.com/in/paul-seale-50a086385" target="_blank">
                   <img src="@/assets/images/linkedin-logo.png" alt="LinkedIn logo" />
-                  LinkedIn account
                 </a>
               </p>
             </section>
@@ -95,46 +88,47 @@ window.onload = function () {
               <h2>Experience</h2>
               <article class="history">
                 <ul class="title">
-                  <li>Application Developer</li>
-                  <li>July 2014 - Present</li>
-                  <li>L3Harris - Tempe, AZ</li>
+                  <li>Senior Application Developer</li>
+                  <li>July 2014 - August 2025</li>
+                  <li>Accenture/L3Harris - Tempe, AZ</li>
                 </ul>
                 <ul class="duties">
-                  <li>Angular developer on MES web-based application</li>
-                  <li>Uses Angular Material, Typescript, RxJS, CSS, HTML, Express.js, Cypress</li>
-                  <li>Works on Agile team with Bitbucket, Jira, Confluence and Jenkins</li>
-                  <li>
-                    Principal C++ and Korn shell script developer of shop floor control system
-                  </li>
-                  <li>Develops SSIS packages and ETL processes for SQL Server</li>
+                  <li>Angular front-end developer on MES web-based application</li>
+                  <li>Developed with TypeScript, CSS, RxJS, Angular Material, Node.js</li>
+                  <li>REST endpoint development with Express.js and Fastify</li>
+                  <li>Migrated web server backend from Oracle to SQL Server</li>
+                  <li>Developed Oracle and SQL Server tables, queries, ands stored procedures</li>
+                  <li>Unix shell scripting and C/C++ development</li>
+                  <li>Experience as an Agile team member</li>
+                  <li>Experience with DevOps tools: Jira, Git, Bitbucket, Confluence, Jenkins</li>
                 </ul>
               </article>
               <article class="history">
                 <ul class="title">
-                  <li>Software Engineer</li>
+                  <li>Principal Software Engineer</li>
                   <li>October 2010 - March 2012</li>
                   <li>PayPal - Scottsdale, AZ</li>
                 </ul>
                 <ul class="duties">
                   <li>Member of the merchant reporting and fraud prevention groups</li>
-                  <li>Used SQL*Plus and PL/SQL on Oracle database for merchant reports</li>
-                  <li>Implemented Actuate Reports in Visual Basic</li>
-                  <li>C++ developer on fraud prevention module</li>
+                  <li>Implemented merchant reports with Oracle PL/SQL stored procedures</li>
+                  <li>Experience with Actuate and Visual Basic</li>
+                  <li>Developed fraud prevention module in C++</li>
                 </ul>
               </article>
               <article class="history">
                 <ul class="title">
-                  <li>Software Engineer</li>
+                  <li>Principal Software Engineer</li>
                   <li>February 2009 - October 2010</li>
                   <li>Chamberlain Access Solutions - Scottdale, AZ</li>
                 </ul>
                 <ul class="duties">
                   <li>Developer on merchant credit card processing application</li>
                   <li>Implemented PCI (payment card industry) security compliance</li>
+                  <li>Languages used: C++, C#</li>
                   <li>Manually generated UML documentation from source code</li>
                   <li>Implemented debugger for Btrieve database</li>
                   <li>Implemented debugger for hardware controller used with self-storage units</li>
-                  <li>Languages used: C++, C#</li>
                 </ul>
               </article>
               <article class="history">
@@ -163,7 +157,7 @@ window.onload = function () {
                   <li>C++ developer in the language tools group</li>
                   <li>Worked on C compiler, assembler, and linker for 8-bit microcontrollers</li>
                   <li>Implemented code generator to target 8-bit Harvard architecture</li>
-                  <li>Automated the release build process and wrote Wise Installer scripts</li>
+                  <li>Automated the release build process, including Wise Installer scripts</li>
                 </ul>
               </article>
               <article class="history">
@@ -198,5 +192,5 @@ window.onload = function () {
 
 <style lang="sass" scoped>
 @use 'sass:meta';
-@include meta.load-css('@/assets/styles/styles.scss');
+@include meta.load-css('@/assets/styles/ResumePage.scss');
 </style>

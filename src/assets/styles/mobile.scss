@@ -1,5 +1,14 @@
-$screen-width: 80vw;
-$screen-height: 85vh;
+@mixin screen-dims {
+  width: 80vw;
+  height: 85vh;
+  @media (width > 480px) {
+    width: 70vw;
+    height: 100vh;
+  }
+}
+.device {
+  @include screen-dims;
+}
 
 h1 {
   font-size: 3em;
@@ -11,8 +20,6 @@ h1 {
 
 .device {
   font-size: 2em;
-  width: $screen-width;
-  height: $screen-height;
   padding-top: 0.5em;
   border: 2em solid black;
   border-radius: 6em;

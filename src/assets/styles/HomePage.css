@@ -1,0 +1,31 @@
+header {
+  width: 60%;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+main {
+  width: 70%;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+p {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+}
+
+@media (orientation: portrait) and (width < 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+  main {
+    font-size: 1rem;
+  }
+}
