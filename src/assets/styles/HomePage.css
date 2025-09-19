@@ -1,6 +1,17 @@
 /*
- * Home page grid.
+ ******************************************************************************
+ * Grid layout for the home page.
+ ******************************************************************************
  */
+#home-page {
+  padding-bottom: 2rem;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'header'
+    'spacer-md'
+    'main';
+}
+
 header {
   grid-area: header;
   grid-template-columns: 1fr;
@@ -15,13 +26,4 @@ main {
   grid-area: main;
   grid-template-columns: 1fr;
   justify-items: start;
-}
-
-#home-page {
-  padding-bottom: 2rem;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    'header'
-    'spacer-md'
-    'main';
 }
