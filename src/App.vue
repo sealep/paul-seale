@@ -20,8 +20,11 @@ const navButtons: NavButtonI[] = [
 </script>
 
 <template>
-  <NavBar :navButtons="navButtons" />
-  <RouterView />
+  <section id="main-app" class="grid">
+    <NavBar :navButtons="navButtons" />
+    <div class="spacer-md"></div>
+    <RouterView class="page" />
+  </section>
 </template>
 
-<style src="@/assets/styles/App.css"></style>
+<style src="@/assets/styles/App.css" scoped></style>

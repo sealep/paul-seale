@@ -85,9 +85,9 @@ function runEffect() {
 </script>
 
 <template>
-  <section id="watch-page">
-    <fieldset id="source-choice">
-      <legend id="choice-legend">Choose a source type:</legend>
+  <section id="watch-page" class="grid">
+    <fieldset id="source-choice" class="grid">
+      <legend>Choose a source type:</legend>
 
       <label id="ref-label" for="ref-radio">
         <input
@@ -134,7 +134,7 @@ function runEffect() {
       </label>
     </fieldset>
 
-    <article id="watch-desc">
+    <article id="watch-desc" class="grid">
       <p>
         This demonstrates the
         <em>watch</em>
@@ -148,7 +148,7 @@ function runEffect() {
       </p>
     </article>
 
-    <code id="watch-object">
+    <code id="watch-object" class="code">
       {{
         `const ${ws.sourceName} = ${ws.sourceFunction}(` +
         JSON.stringify(unref(ws.source), null, 2).replace(/\"/g, '') +
@@ -156,27 +156,31 @@ function runEffect() {
       }}
     </code>
 
-    <code id="watch-function">
+    <code id="watch-function" class="code flex">
       {{ functionDisplay }}
     </code>
 
-    <fieldset id="function-options">
+    <fieldset id="function-options" class="grid">
       <label id="source-label" for="source-select">Select watch source:</label>
-      <select id="source-select" v-model.number="sourceExpOptionIndexes[sourceType]">
+      <select id="source-select" class="code" v-model.number="sourceExpOptionIndexes[sourceType]">
         <option v-for="(sourceExpOption, index) in ws.sourceExpOptions" :key="index" :value="index">
           {{ sourceExpOption.name }}
         </option>
       </select>
 
       <label id="deep-label" for="deep-select">Select deep option:</label>
-      <select id="deep-select" v-model.number="deepOptionIndexes[sourceType]">
+      <select id="deep-select" class="code" v-model.number="deepOptionIndexes[sourceType]">
         <option v-for="(deepOption, index) in deepOptions" :key="index" :value="index">
           {{ deepOption.name }}
         </option>
       </select>
 
       <label id="effect-label" for="effect-select">Select effect to run:</label>
-      <select id="effect-select" v-model.number="sourceEffectOptionIndexes[sourceType]">
+      <select
+        id="effect-select"
+        class="code"
+        v-model.number="sourceEffectOptionIndexes[sourceType]"
+      >
         <option
           v-for="(sourceEffectOption, index) in ws.sourceEffectOptions"
           :key="index"
@@ -187,14 +191,14 @@ function runEffect() {
       </select>
     </fieldset>
 
-    <section id="run-effect">
+    <section id="run-effect" class="grid">
       <ActionButton
         id="effect-button"
         :disabled="!!triggerMessage"
         :buttonName="'Run Effect'"
         :action="runEffect"
       />
-      <p id="trigger-message" v-show="triggerMessage">{{ triggerMessage }}</p>
+      <p id="trigger-message" class="code" v-show="triggerMessage">{{ triggerMessage }}</p>
     </section>
   </section>
 </template>

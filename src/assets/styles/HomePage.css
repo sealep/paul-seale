@@ -1,32 +1,27 @@
+/*
+ * Home page grid.
+ */
 header {
-  width: 80%;
-  margin: 2rem auto;
-  text-align: center;
+  grid-area: header;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.spacer-md {
+  grid-area: spacer-md;
 }
 
 main {
-  width: 80%;
-  margin: 0 auto;
+  grid-area: main;
+  grid-template-columns: 1fr;
+  justify-items: start;
+}
+
+#home-page {
   padding-bottom: 2rem;
-}
-
-h1 {
-  font-size: 3rem;
-}
-
-p {
-  margin: 1rem 0;
-  font-size: 1.5rem;
-}
-
-@media (orientation: portrait) and (width < 768px) {
-  h1 {
-    font-size: 2rem;
-  }
-  h2 {
-    font-size: 1.4rem;
-  }
-  main {
-    font-size: 1rem;
-  }
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'header'
+    'spacer-md'
+    'main';
 }

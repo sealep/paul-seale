@@ -1,24 +1,35 @@
-.nav-bar {
-  padding: 0 1rem;
-  height: 5rem;
+/*
+ * Nav bar grid.
+ */
+:nth-child(1 of .spacer-sm) {
+  grid-area: spacer-1;
+}
+
+nav {
+  grid-area: nav;
+  justify-self: stretch;
+}
+
+:nth-child(2 of .spacer-sm) {
+  grid-area: spacer-2;
+}
+
+/* Sticky nav bar at the top, above everything. */
+#nav-bar {
   position: sticky;
   top: 0;
+  z-index: 100;
   background-color: var(--vue-ocean-green);
   box-shadow: 0 1rem 1rem 0 rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  z-index: 100; /* higher than resume page */
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'spacer-1'
+    'nav'
+    'spacer-2';
 }
-@media (orientation: portrait) and (width >= 768px) {
-  .nav-bar {
-    padding: 0 0.5rem;
-    justify-content: space-evenly;
-  }
-}
-@media (orientation: portrait) and (width < 768px) {
-  .nav-bar {
-    padding: 0 0.5rem;
+
+@media (orientation: portrait) {
+  nav {
     justify-content: space-evenly;
   }
 }

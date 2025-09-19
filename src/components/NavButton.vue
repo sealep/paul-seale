@@ -10,11 +10,9 @@ const { buttonName, linkName } = defineProps<NavButtonI>()
 </script>
 
 <template>
-  <div>
-    <RouterLink :to="{ name: linkName }">
-      <button tabindex="-1">{{ buttonName }}</button>
-    </RouterLink>
-  </div>
+  <RouterLink :to="{ name: linkName }">
+    <button tabindex="-1">{{ buttonName }}</button>
+  </RouterLink>
 </template>
 
 <style src="@/assets/styles/NavButton.css" scoped></style>

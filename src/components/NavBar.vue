@@ -10,11 +10,13 @@ const { navButtons } = defineProps<NavBarI>()
 </script>
 
 <template>
-  <div class="nav-bar">
-    <div v-for="(navButton, index) in navButtons" :key="index">
-      <NavButton v-bind="navButton" />
-    </div>
-  </div>
+  <section id="nav-bar" class="grid">
+    <nav class="flex">
+      <div v-for="(navButton, index) in navButtons" :key="index">
+        <NavButton v-bind="navButton" />
+      </div>
+    </nav>
+  </section>
 </template>
 
 <style src="@/assets/styles/NavBar.css" scoped></style>

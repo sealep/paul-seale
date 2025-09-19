@@ -1,5 +1,37 @@
+/*
+ ************************************************
+ * Grid: description of the watch function.
+ ************************************************
+ */
+#watch-desc {
+  grid-area: watch-desc;
+  align-self: start;
+  grid-template-columns: 1fr;
+}
+
+/*
+ ************************************************
+ * Grid: 'Choose a source type'.
+ ************************************************
+ */
 #source-choice {
   grid-area: source-choice;
+  border: 0.1rem solid var(--dark-grayish);
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'ref-label'
+    'sref-label'
+    'reactive-label'
+    'sreactive-label';
+}
+
+#source-choice > legend {
+  font-size: 1.1rem;
+  padding: 0 0.1rem;
+}
+
+#source-choice > * {
+  justify-self: start;
 }
 
 #ref-label {
@@ -18,65 +50,63 @@
   grid-area: sreactive-label;
 }
 
-#watch-desc {
-  grid-area: watch-desc;
-}
-
-#watch-object {
-  grid-area: watch-object;
-}
-
-#watch-function {
-  grid-area: watch-function;
-}
-
+/*
+ ************************************************
+ * Grid: select watch function options and effect.
+ ************************************************
+ */
 #function-options {
   grid-area: function-options;
+  margin: 0.5rem;
+  grid-template-columns: 40% 1fr;
+  grid-template-areas:
+    'source-label source-select'
+    'deep-label deep-select'
+    'effect-label effect-select';
 }
 
 #source-label {
   grid-area: source-label;
 }
 
-#source-select {
-  grid-area: source-select;
-}
-
 #deep-label {
   grid-area: deep-label;
-}
-
-#deep-select {
-  grid-area: deep-select;
 }
 
 #effect-label {
   grid-area: effect-label;
 }
 
+#function-options > label {
+  justify-self: end;
+}
+
+#source-select {
+  grid-area: source-select;
+}
+
+#deep-select {
+  grid-area: deep-select;
+}
+
 #effect-select {
   grid-area: effect-select;
 }
 
+/*
+ ************************************************
+ * Grid: run the effect.
+ ************************************************
+ */
 #run-effect {
   grid-area: run-effect;
+  grid-template-columns: 40% 1fr;
+  grid-template-areas: 'effect-button trigger-message';
 }
 
 #effect-button {
   grid-area: effect-button;
-}
-
-#trigger-message {
-  grid-area: trigger-message;
-}
-
-code {
-  padding: 0.5rem;
-  border: 0.1rem solid var(--dark-grayish);
-  white-space: pre;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
-  background-color: var(--white-old-paper);
+  justify-self: end;
 }
 
 @keyframes yellowfade {
@@ -88,151 +118,54 @@ code {
   }
 }
 
-#source-choice {
-  border: 0.1rem solid var(--dark-grayish);
-  align-self: center;
-  margin-right: 0.5rem;
-  display: grid;
-  align-items: center;
-  grid-template-columns: 100%;
-  grid-template-areas: 'ref-label' 'sref-label' 'reactive-label' 'sreactive-label';
-}
-
-#choice-legend {
-  font-size: 1.1rem;
-  margin: 0 0.5rem;
-  padding: 0 0.2rem;
-}
-
-#source-choice > label {
-  margin: 0.5rem;
-}
-
-#watch-desc {
-  align-self: center;
-  margin-right: 1rem;
-  font-size: 1.2rem;
-}
-
-#watch-desc > p {
-  margin: 0.5rem 0;
-}
-
-#watch-object {
-  margin: 0.5rem 0;
-}
-
-#function-options {
-  border: none;
-  display: grid;
-  grid-template-columns: 40% 60%;
-  grid-template-areas:
-    'source-label source-select'
-    'deep-label deep-select'
-    'effect-label effect-select';
-}
-
-#function-options > label {
-  justify-self: end;
-  align-self: center;
-  margin-right: 0.5rem;
-}
-
-#function-options > select {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 1rem;
-  font-weight: bold;
-  color: black;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  align-self: center;
-  height: 1.5rem;
-  margin-right: 0.5rem;
-}
-
-#run-effect {
-  display: grid;
-  grid-template-columns: 40% 60%;
-  grid-template-areas: 'effect-button trigger-message';
-}
-
-#effect-button {
-  justify-self: end;
-  margin-right: 0.5rem;
-}
-
 #trigger-message {
-  align-self: center;
-  width: fit-content;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
-  padding: 0 0.5rem;
+  grid-area: trigger-message;
+  text-align: center;
   animation-name: yellowfade;
   animation-duration: 3s;
 }
 
-@media (orientation: landscape) {
-  #watch-page {
-    padding: 2rem 1rem;
-    display: grid;
-    grid-template-columns: 25% 25% 20% 1fr;
-    grid-template-areas:
-      'watch-desc watch-desc source-choice watch-object'
-      'function-options function-options watch-function watch-function'
-      'function-options function-options watch-function watch-function'
-      'function-options function-options watch-function watch-function'
-      'run-effect run-effect . .';
-  }
+/*
+ ************************************************
+ * Grid: the watch page.
+ ************************************************
+ */
+#watch-page {
+  padding: 0 1rem;
+  grid-template-columns: 25% 25% 20% 1fr;
+  grid-template-areas:
+    'watch-desc watch-desc source-choice watch-object'
+    'function-options function-options watch-function watch-function'
+    'function-options function-options watch-function watch-function'
+    'function-options function-options watch-function watch-function'
+    'run-effect run-effect . .';
 }
 
+#watch-object {
+  grid-area: watch-object;
+}
+
+#watch-function {
+  grid-area: watch-function;
+}
+
+#watch-function,
+#watch-object {
+  padding: 0.5rem;
+  border: 0.1rem solid var(--dark-grayish);
+  background-color: var(--white-old-paper);
+}
+
+/*
+ ************************************************
+ * Wide portrait for like tablets.
+ ************************************************
+ */
 @media (orientation: portrait) and (width >= 768px) {
-  #watch-page {
-    padding: 2rem 1rem;
-    display: grid;
-    grid-template-columns: 25% 30% 1fr;
-    grid-template-areas:
-      'watch-desc watch-desc watch-desc'
-      '. source-choice watch-object'
-      'function-options function-options watch-function'
-      'run-effect run-effect .';
-  }
-
-  #watch-desc {
-    align-self: center;
-    margin: 0;
-    font-size: 1.2rem;
-  }
-}
-
-@media (orientation: portrait) and (width < 768px) {
-  #watch-page {
-    padding: 2rem 1rem;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-areas:
-      'watch-desc watch-desc'
-      'source-choice source-choice'
-      'watch-object watch-object'
-      'function-options function-options'
-      'watch-function watch-function'
-      'run-effect run-effect';
-  }
-
-  #watch-desc {
-    align-self: center;
-    margin: 0;
-    margin-bottom: 1.5rem;
-    font-size: 1rem;
-  }
-
-  #source-choice {
-    margin: 0;
-  }
-
   #function-options {
-    border: none;
-    display: grid;
-    grid-template-columns: 100%;
+    margin: 0;
+    grid-area: function-options;
+    grid-template-columns: 1fr;
     grid-template-areas:
       'source-label'
       'source-select'
@@ -244,34 +177,79 @@ code {
 
   #function-options > label {
     justify-self: start;
-    align-self: center;
-  }
-
-  #function-options > select {
-    margin: 0;
-    height: 1.8rem;
-  }
-
-  #watch-object {
-    margin-top: 0.1rem;
-  }
-
-  #watch-function {
-    margin-top: 0.5rem;
+    margin-bottom: 0;
   }
 
   #run-effect {
-    margin-top: 0.5rem;
-    padding-bottom: 2rem;
-    grid-template-columns: 30% 70%;
+    grid-area: run-effect;
+    margin-left: 0;
+    grid-template-columns: 20% 1fr;
+    grid-template-areas: 'effect-button trigger-message';
   }
 
   #effect-button {
     justify-self: start;
   }
 
-  #trigger-message {
-    align-items: center;
-    padding: 0 1rem;
+  #watch-page {
+    padding: 0 0.5rem;
+    grid-template-columns: 40% 1fr;
+    grid-template-areas:
+      'watch-desc watch-desc'
+      'source-choice watch-object'
+      'function-options watch-function'
+      'run-effect run-effect';
+  }
+
+  #watch-function {
+    align-self: stretch;
+  }
+}
+
+/*
+ ************************************************
+ * Narrow portrait for like phones.
+ ************************************************
+ */
+@media (orientation: portrait) and (width < 768px) {
+  #function-options {
+    margin: 0;
+    grid-area: function-options;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'source-label'
+      'source-select'
+      'deep-label'
+      'deep-select'
+      'effect-label'
+      'effect-select';
+  }
+
+  #function-options > label {
+    justify-self: start;
+    margin-bottom: 0;
+  }
+
+  #run-effect {
+    grid-area: run-effect;
+    margin-left: 0;
+    grid-template-columns: 30% 1fr;
+    grid-template-areas: 'effect-button trigger-message';
+  }
+
+  #effect-button {
+    justify-self: start;
+  }
+
+  #watch-page {
+    padding: 0 0.5rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'watch-desc watch-desc'
+      'source-choice source-choice'
+      'watch-object watch-object'
+      'function-options function-options'
+      'watch-function watch-function'
+      'run-effect run-effect';
   }
 }
