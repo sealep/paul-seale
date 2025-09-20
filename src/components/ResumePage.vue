@@ -1,6 +1,16 @@
 <script setup lang="ts">
-/* Author: Paul Seale */
+/*
+ *****************************************************************************
+ * The resume page displays my resume in a CSS-generated laptop, in
+ * landscape mode, or in a CSS-generated phone, in portrait mode.
+ *****************************************************************************
+ */
 
+/*
+ * Logic to allow scrolling on the resume via the scroll bar triangles.
+ * This doesn't work so well on the touch devices (e.g., iPad), so
+ * I'd be interested in improving that further.
+ */
 window.onload = function () {
   let intervalId: number | null = null
   const scrollUpElem = document.querySelector('.scrollup')

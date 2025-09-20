@@ -1,4 +1,9 @@
 <script setup lang="ts">
+/*
+ *****************************************************************************
+ * The navigation bar.
+ *****************************************************************************
+ */
 import { type NavButtonI } from '@/components/NavButton.vue'
 import NavButton from '@/components/NavButton.vue'
 

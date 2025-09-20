@@ -1,7 +1,16 @@
 <script setup lang="ts">
+/*
+ *****************************************************************************
+ * The watch page, which demonstrates the functionality of the 'watch'
+ * function of the Composition API of Vue.
+ *****************************************************************************
+ */
 import ActionButton from '@/components/ActionButton.vue'
 import useDeep, { type DeepValue } from '@/composables/useDeep'
-import useWatchSource, { SourceType, type WatchSource } from '@/composables/useWatchSource'
+import useWatchSource, {
+  SourceType,
+  type WatchSource,
+} from '@/composables/useWatchSource'
 import {
   computed,
   ref,
@@ -36,7 +45,9 @@ watchEffect(() => {
       ? '{ }'
       : `{ deep: ${deepOptions[deepOptionIndexes.value[sourceType.value]].name} }`
   const effect =
-    ws.value.sourceEffectOptions[sourceEffectOptionIndexes.value[sourceType.value]].name
+    ws.value.sourceEffectOptions[
+      sourceEffectOptionIndexes.value[sourceType.value]
+    ].name
   functionDisplay.value = `watch(
   ${ws.value.sourceExpOptions[sourceExpOptionIndexes.value[sourceType.value]].name},
   ( ) => {
@@ -48,10 +59,15 @@ watchEffect(() => {
 
 const triggerMessage = ref('')
 
-function createWatcher(exp: MaybeRefOrGetter<WatchSource>, deep: DeepValue): WatchHandle {
+function createWatcher(
+  exp: MaybeRefOrGetter<WatchSource>,
+  deep: DeepValue,
+): WatchHandle {
   const options: WatchOptions = { deep }
   const effect =
-    ws.value.sourceEffectOptions[sourceEffectOptionIndexes.value[sourceType.value]].name
+    ws.value.sourceEffectOptions[
+      sourceEffectOptionIndexes.value[sourceType.value]
+    ].name
   return watch(
     toValue(exp),
     () => {
@@ -71,16 +87,20 @@ function setUpWatcher() {
     watcher.stop()
   }
   watcher = createWatcher(
-    ws.value.sourceExpOptions[sourceExpOptionIndexes.value[sourceType.value]].exp,
+    ws.value.sourceExpOptions[sourceExpOptionIndexes.value[sourceType.value]]
+      .exp,
     deepOptions[deepOptionIndexes.value[sourceType.value]].val,
   )
 }
+
 watchEffect(() => {
   setUpWatcher()
 })
 
 function runEffect() {
-  ws.value.sourceEffectOptions[sourceEffectOptionIndexes.value[sourceType.value]].effect()
+  ws.value.sourceEffectOptions[
+    sourceEffectOptionIndexes.value[sourceType.value]
+  ].effect()
 }
 </script>
 
@@ -138,13 +158,14 @@ function runEffect() {
       <p>
         This demonstrates the
         <em>watch</em>
-        function from the Vue Composition API. You can observe the behavior of the function when
-        varying the source expression to be watched, the 'deep' option, and the effect to attempt to
-        trigger the watcher.
+        function from the Vue Composition API. You can observe the behavior of
+        the function when varying the source expression to be watched, the
+        'deep' option, and the effect to attempt to trigger the watcher.
       </p>
       <p>
-        Note the difference in behavior when the source expression is an object versus when it is a
-        getter, as well as the lack of reactivity among the shallow versions of the source types.
+        Note the difference in behavior when the source expression is an object
+        versus when it is a getter, as well as the lack of reactivity among the
+        shallow versions of the source types.
       </p>
     </article>
 
@@ -162,15 +183,31 @@ function runEffect() {
 
     <fieldset id="function-options" class="grid">
       <label id="source-label" for="source-select">Select watch source:</label>
-      <select id="source-select" class="code" v-model.number="sourceExpOptionIndexes[sourceType]">
-        <option v-for="(sourceExpOption, index) in ws.sourceExpOptions" :key="index" :value="index">
+      <select
+        id="source-select"
+        class="code"
+        v-model.number="sourceExpOptionIndexes[sourceType]"
+      >
+        <option
+          v-for="(sourceExpOption, index) in ws.sourceExpOptions"
+          :key="index"
+          :value="index"
+        >
           {{ sourceExpOption.name }}
         </option>
       </select>
 
       <label id="deep-label" for="deep-select">Select deep option:</label>
-      <select id="deep-select" class="code" v-model.number="deepOptionIndexes[sourceType]">
-        <option v-for="(deepOption, index) in deepOptions" :key="index" :value="index">
+      <select
+        id="deep-select"
+        class="code"
+        v-model.number="deepOptionIndexes[sourceType]"
+      >
+        <option
+          v-for="(deepOption, index) in deepOptions"
+          :key="index"
+          :value="index"
+        >
           {{ deepOption.name }}
         </option>
       </select>
@@ -198,7 +235,9 @@ function runEffect() {
         :buttonName="'Run Effect'"
         :action="runEffect"
       />
-      <p id="trigger-message" class="code" v-show="triggerMessage">{{ triggerMessage }}</p>
+      <p id="trigger-message" class="code" v-show="triggerMessage">
+        {{ triggerMessage }}
+      </p>
     </section>
   </section>
 </template>

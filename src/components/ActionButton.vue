@@ -1,4 +1,9 @@
 <script setup lang="ts">
+/*
+ *****************************************************************************
+ * An action button executes an event.
+ *****************************************************************************
+ */
 export interface ActionButtonI {
   buttonName: string
   action: () => void

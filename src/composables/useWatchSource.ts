@@ -1,3 +1,11 @@
+/*
+ ******************************************************************************
+ * Logic for the first parameter (the watched source expression) of the
+ * 'watch' function, and the associated possible effects to run against the
+ * expression to potentially trigger the watcher.
+ * We experiment with 4 types: ref, shallowRef, reactive, and shallowReactive.
+ ******************************************************************************
+ */
 import {
   isRef,
   reactive,
@@ -31,7 +39,6 @@ type Source =
   | Reactive<RawSource>
   | ShallowReactive<RawSource>
 
-/* The native Vue WatchSource doesn't allow Reactive objects */
 type WatchSource = object | (() => object | number)
 
 type ExpOption = {
@@ -40,6 +47,7 @@ type ExpOption = {
 }
 
 type EffectOption = { name: string; effect: () => void }
+
 function newRawObj() {
   const o: RawSource = {
     n: 0,
@@ -91,7 +99,10 @@ function getSourceFunction(sourceType: SourceType) {
 }
 
 function isShallow(sourceType: SourceType) {
-  return sourceType === SourceType.SHALLOW_REACTIVE || sourceType === SourceType.SHALLOW_REF
+  return (
+    sourceType === SourceType.SHALLOW_REACTIVE ||
+    sourceType === SourceType.SHALLOW_REF
+  )
 }
 
 function getRefExpOptions(
@@ -178,7 +189,11 @@ function getReactiveExpOptions(
   ]
 }
 
-function getSourceExpOptions(source: Source, sourceType: SourceType, sourceName: string) {
+function getSourceExpOptions(
+  source: Source,
+  sourceType: SourceType,
+  sourceName: string,
+) {
   if (isRef(source)) {
     return getRefExpOptions(source, isShallow(sourceType), sourceName)
   } else {
@@ -261,4 +276,10 @@ export default function useWatchSource(sourceType: SourceType) {
   }
 }
 
-export { SourceType, type Source, type WatchSource, type ExpOption, type EffectOption }
+export {
+  SourceType,
+  type Source,
+  type WatchSource,
+  type ExpOption,
+  type EffectOption,
+}

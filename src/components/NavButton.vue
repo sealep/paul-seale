@@ -1,4 +1,11 @@
 <script setup lang="ts">
+/*
+ *****************************************************************************
+ * A navigation button routes to a page.
+ * We opt the button out of the tab sequence because it is redundant
+ * with the underlying tabable anchor element.
+ *****************************************************************************
+ */
 import { RouterLink } from 'vue-router'
 
 export interface NavButtonI {
