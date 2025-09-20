@@ -1,3 +1,8 @@
+/*
+ *****************************************************************************
+ * Basic Vue router.
+ *****************************************************************************
+ */
 import HomePage from '@/components/HomePage.vue'
 import ResumePage from '@/components/ResumePage.vue'
 import WatchPage from '@/components/WatchPage.vue'

@@ -1,4 +1,10 @@
 <script setup lang="ts">
+/*
+ *****************************************************************************
+ * The app is a sticky navigation bar at the top, with links to
+ * various pages.
+ *****************************************************************************
+ */
 import type { NavButtonI } from '@/components/NavButton.vue'
 import NavBar from '@/components/NavBar.vue'
 import { RouterView } from 'vue-router'
