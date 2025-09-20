@@ -1,6 +1,6 @@
 /*
  ******************************************************************************
- * The global stylesheet.
+ * The base stylesheet.
  ******************************************************************************
  */
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');
@@ -24,7 +24,7 @@
 
 /*
  ******************************************************************************
- * CSS reset and responsivity.
+ * CSS reset and base elements with responsivity.
  ******************************************************************************
  */
 * {
@@ -102,7 +102,8 @@ select {
 
 /*
  ******************************************************************************
- * 'Base classes' for grid and flex layouts.
+ * Base classes for grid and flex layouts.
+ * We give their items some margin to start, and adjust as needed.
  ******************************************************************************
  */
 .grid {

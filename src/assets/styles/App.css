@@ -12,7 +12,7 @@
 }
 
 /* Reset margins at the top level. */
-#main-app > .grid {
+#main-app > * {
   margin: 0;
 }
 

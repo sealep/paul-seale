@@ -1,3 +1,8 @@
+/*
+ ******************************************************************************
+ * Action button styles.
+ ******************************************************************************
+ */
 button {
   background-color: var(--steely-blue);
   box-shadow: 0 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);
@@ -8,6 +13,7 @@ button:disabled {
   color: var(--disabled-gray-dark);
 }
 
+/* Gets bigger on hover and click. */
 .action-button:hover {
   transform: scale(1.01);
 }

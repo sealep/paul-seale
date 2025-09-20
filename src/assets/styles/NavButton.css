@@ -1,3 +1,8 @@
+/*
+ ******************************************************************************
+ * Navigation button styles.
+ ******************************************************************************
+ */
 button {
   background-color: var(--vue-pickled-bluewood);
   color: white;
@@ -13,6 +18,7 @@ a {
   border-radius: 0.5rem;
 }
 
+/* Button for the active page will have a white border. */
 a.router-link-active {
   border: 0.2rem solid white;
 }

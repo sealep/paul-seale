@@ -1,19 +1,8 @@
 /*
- * Nav bar grid.
+ ******************************************************************************
+ * Grid layout for the  navigation bar.
+ ******************************************************************************
  */
-:nth-child(1 of .spacer-sm) {
-  grid-area: spacer-1;
-}
-
-nav {
-  grid-area: nav;
-  justify-self: stretch;
-}
-
-:nth-child(2 of .spacer-sm) {
-  grid-area: spacer-2;
-}
-
 /* Sticky nav bar at the top, above everything. */
 #nav-bar {
   position: sticky;
@@ -28,8 +17,22 @@ nav {
     'spacer-2';
 }
 
+:nth-child(1 of .spacer-sm) {
+  grid-area: spacer-1;
+}
+
+nav {
+  grid-area: nav;
+  justify-self: stretch;
+}
+
+:nth-child(2 of .spacer-sm) {
+  grid-area: spacer-2;
+}
+
+/* For portrait, center the navigation buttons. */
 @media (orientation: portrait) {
-  nav {
+  #nav-bar {
     justify-content: space-evenly;
   }
 }
