@@ -1,6 +1,6 @@
-# vue-project
+# Paul Seale, Software Engineer
 
-This template should help get you started developing with Vue 3 in Vite.
+My website is built with Vue 3.
 
 ## Recommended IDE Setup
 
