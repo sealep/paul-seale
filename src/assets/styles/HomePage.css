@@ -24,6 +24,15 @@ header {
 
 main {
   grid-area: main;
+  padding: 0 2rem;
   grid-template-columns: 1fr;
   justify-items: start;
+}
+@media (width < 768px) {
+  main {
+    padding: 0 1rem;
+  }
+  main > p {
+    font-size: 0.8rem;
+  }
 }

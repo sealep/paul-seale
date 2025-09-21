@@ -121,6 +121,7 @@
 #trigger-message {
   grid-area: trigger-message;
   text-align: center;
+  font-size: 1.3rem;
   animation-name: yellowfade;
   animation-duration: 3s;
 }
@@ -183,8 +184,8 @@
   #run-effect {
     grid-area: run-effect;
     margin-left: 0;
-    grid-template-columns: 20% 1fr;
-    grid-template-areas: 'effect-button trigger-message';
+    grid-template-columns: 20% 50% 1fr;
+    grid-template-areas: 'effect-button trigger-message .';
   }
 
   #effect-button {
@@ -239,6 +240,10 @@
 
   #effect-button {
     justify-self: start;
+  }
+
+  #trigger-message {
+    font-size: 1rem;
   }
 
   #watch-page {
