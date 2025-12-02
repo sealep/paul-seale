@@ -104,7 +104,7 @@ window.onload = function () {
               <p>
                 <a
                   class="link"
-                  href="https://linkedin.com/in/paul-seale-50a086385"
+                  href="https://linkedin.com/in/paul-seale-058a3b39b"
                   target="_blank"
                 >
                   <img
